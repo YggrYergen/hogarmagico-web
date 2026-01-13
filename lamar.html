@@ -87,7 +87,8 @@
         <header
             class="relative w-full h-[70vh] md:h-[85vh] flex items-center justify-center overflow-hidden bg-color-ink">
             <img src="images/chascona-hero.jpg" alt="Casa La Mar Hero"
-                class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60">
+                srcset="images/chascona-hero_small.jpg 600w, images/chascona-hero_medium.jpg 1200w, images/chascona-hero.jpg 2000w"
+                sizes="100vw" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60">
 
             <div class="relative z-10 text-center text-white px-6">
                 <h1 class="text-6xl md:text-9xl font-serif mb-6 reveal-on-scroll">Casa La Mar</h1>
@@ -134,7 +135,9 @@
                 </div>
                 <div class="reveal-on-scroll" style="transition-delay: 0.2s;">
                     <div class="arch-mask overflow-hidden h-[500px] shadow-2xl">
-                        <img src="images/chascona-adobe.jpg" class="w-full h-full object-cover">
+                        <img src="images/chascona-adobe.jpg"
+                            srcset="images/chascona-adobe_small.jpg 600w, images/chascona-adobe_medium.jpg 1200w"
+                            sizes="(max-width: 768px) 100vw, 50vw" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
@@ -145,21 +148,27 @@
                 <div class="flex overflow-x-auto gap-8 pb-12 snap-x hide-scrollbar">
                     <div class="min-w-[300px] md:min-w-[400px] snap-center">
                         <div class="h-[400px] rounded-3xl overflow-hidden mb-6 shadow-lg">
-                            <img src="images/chascona-cocina.jpg" class="w-full h-full object-cover">
+                            <img src="images/chascona-cocina.jpg"
+                                srcset="images/chascona-cocina_small.jpg 600w, images/chascona-cocina_medium.jpg 1200w"
+                                sizes="300px" class="w-full h-full object-cover" loading="lazy">
                         </div>
                         <h4 class="text-xl font-serif mb-2">Cocina Equipada</h4>
                         <p class="opacity-60 text-sm">Todo lo necesario para tus preparaciones.</p>
                     </div>
                     <div class="min-w-[300px] md:min-w-[400px] snap-center">
                         <div class="h-[400px] rounded-3xl overflow-hidden mb-6 shadow-lg">
-                            <img src="images/chascona-detalle.jpg" class="w-full h-full object-cover">
+                            <img src="images/chascona-detalle.jpg"
+                                srcset="images/chascona-detalle_small.jpg 600w, images/chascona-detalle_medium.jpg 1200w"
+                                sizes="300px" class="w-full h-full object-cover" loading="lazy">
                         </div>
                         <h4 class="text-xl font-serif mb-2">Detalles que Sanan</h4>
                         <p class="opacity-60 text-sm">Artesanía local en cada esquina.</p>
                     </div>
                     <div class="min-w-[300px] md:min-w-[400px] snap-center">
                         <div class="h-[400px] rounded-3xl overflow-hidden mb-6 shadow-lg">
-                            <img src="images/chascona-escalera.jpg" class="w-full h-full object-cover">
+                            <img src="images/chascona-escalera.jpg"
+                                srcset="images/chascona-escalera_small.jpg 600w, images/chascona-escalera_medium.jpg 1200w"
+                                sizes="300px" class="w-full h-full object-cover" loading="lazy">
                         </div>
                         <h4 class="text-xl font-serif mb-2">Niveles de Calma</h4>
                         <p class="opacity-60 text-sm">Espacios privados bien distribuidos.</p>
@@ -213,7 +222,9 @@
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-sea/20 blob-1 overflow-hidden shrink-0">
                                 <img src="images/portal-mar-1.jpg"
-                                    class="w-full h-full object-cover opacity-80 mix-blend-multiply">
+                                    srcset="images/portal-mar-1_small.jpg 600w, images/portal-mar-1_medium.jpg 1200w"
+                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                    loading="lazy">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg">Carolina V.</h4>
@@ -229,7 +240,9 @@
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-earth/20 blob-2 overflow-hidden shrink-0">
                                 <img src="images/portal-mar-2.jpg"
-                                    class="w-full h-full object-cover opacity-80 mix-blend-multiply">
+                                    srcset="images/portal-mar-2_small.jpg 600w, images/portal-mar-2_medium.jpg 1200w"
+                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                    loading="lazy">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg">Andrés P.</h4>
@@ -245,7 +258,9 @@
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-ink/20 blob-3 overflow-hidden shrink-0">
                                 <img src="images/portal-mar-3.jpg"
-                                    class="w-full h-full object-cover opacity-80 mix-blend-multiply">
+                                    srcset="images/portal-mar-3_small.jpg 600w, images/portal-mar-3_medium.jpg 1200w"
+                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                    loading="lazy">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg">Valentina S.</h4>
@@ -262,7 +277,9 @@
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-sea/20 blob-1 overflow-hidden shrink-0">
                                 <img src="images/portal-mar-1.jpg"
-                                    class="w-full h-full object-cover opacity-80 mix-blend-multiply">
+                                    srcset="images/portal-mar-1_small.jpg 600w, images/portal-mar-1_medium.jpg 1200w"
+                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                    loading="lazy">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg">Carolina V.</h4>
@@ -278,7 +295,9 @@
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-earth/20 blob-2 overflow-hidden shrink-0">
                                 <img src="images/portal-mar-2.jpg"
-                                    class="w-full h-full object-cover opacity-80 mix-blend-multiply">
+                                    srcset="images/portal-mar-2_small.jpg 600w, images/portal-mar-2_medium.jpg 1200w"
+                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                    loading="lazy">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg">Andrés P.</h4>
@@ -294,7 +313,9 @@
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-ink/20 blob-3 overflow-hidden shrink-0">
                                 <img src="images/portal-mar-3.jpg"
-                                    class="w-full h-full object-cover opacity-80 mix-blend-multiply">
+                                    srcset="images/portal-mar-3_small.jpg 600w, images/portal-mar-3_medium.jpg 1200w"
+                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                    loading="lazy">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg">Valentina S.</h4>
