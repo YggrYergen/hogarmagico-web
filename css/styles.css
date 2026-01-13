@@ -97,25 +97,6 @@
     opacity: 0;
     pointer-events: none;
 
-    /* 7. Marquee Animation */
-    @keyframes scroll {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-50%);
-        }
-    }
-
-    .animate-scroll {
-        animation: scroll 40s linear infinite;
-    }
-
-    .animate-scroll:hover {
-        animation-play-state: paused;
-    }
-
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -125,6 +106,45 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     z-index: 100;
 }
+
+/* 7. Marquee Animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scroll-reverse {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.animate-scroll {
+    animation: scroll 40s linear infinite;
+}
+
+.animate-scroll:hover {
+    animation-play-state: paused;
+}
+
+.animate-scroll-reverse {
+    animation: scroll-reverse 40s linear infinite;
+}
+
+.animate-scroll-reverse:hover {
+    animation-play-state: paused;
+}
+
+
 
 .nav-item-dropdown.is-active .nav-dropdown {
     opacity: 1;
