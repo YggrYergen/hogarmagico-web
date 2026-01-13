@@ -1,0 +1,25 @@
+/* VARIANT CANARY: EXTREME VISIBILITY TEST */
+body {
+    background-color: red !important;
+    background-image: none !important;
+    filter: invert(1) !important;
+}
+
+div,
+table,
+td,
+span,
+p,
+a {
+    background-color: yellow !important;
+    color: blue !important;
+    border: 5px solid red !important;
+    font-size: 24px !important;
+    font-weight: 900 !important;
+}
+
+/* Force hide everything else to be sure */
+iframe,
+img {
+    border: 10px solid lime !important;
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beds24 CSS Lab</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #eee; }
+        .controls {
+            background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;
+        }
+        .control-group { border: 1px solid #ddd; padding: 10px; border-radius: 4px; }
+        .control-group h4 { margin: 0 0 10px 0; font-size: 14px; }
+        label { display: block; margin-bottom: 5px; font-size: 13px; }
+        
+        .iframe-container {
+            background: white; padding: 20px; border-radius: 8px; transition: all 0.3s ease;
+            max-width: 1000px; margin: 0 auto;
+        }
+
+        #the-iframe {
+            width: 100%; height: 800px; border: none; transition: all 0.3s ease;
+        }
+
+        /* Test Classes for Container */
+        .style-shadow { box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .style-border { border: 5px solid #333 !important; }
+        .style-rounded { border-radius: 12px; overflow: hidden; }
+        
+        /* Filters */
+        .filter-bw { filter: grayscale(1); }
+        .filter-contrast { filter: contrast(120%) brightness(105%); }
+        .filter-sepia { filter: sepia(0.3) contrast(110%); }
+        .filter-modern { filter: saturate(0.8) contrast(1.1) brightness(1.02); }
+        .filter-dark { filter: invert(0.9) hue-rotate(180deg) contrast(0.8); }
+
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <div class="control-group">
+            <h4>Iframe Parameters</h4>
+            <label><input type="checkbox" id="chk-css"> Inject local custom.css (HTTP)</label>
+            <label><input type="text" id="txt-css-url" placeholder="External CSS URL (HTTPS)" style="width: 100%;"></label>
+            <button onclick="updateIframeSrc()">Reload Iframe</button>
+        </div>
+        <div class="control-group">
+            <h4>Container Styling</h4>
+            <label><input type="checkbox" onchange="toggleContainer('style-shadow')"> Shadow</label>
+            <label><input type="checkbox" onchange="toggleContainer('style-rounded')"> Rounded Corners</label>
+            <label><input type="checkbox" onchange="toggleContainer('style-border')"> Thick Border</label>
+            <label>Width: <input type="range" min="300" max="100%" value="1000" oninput="resizeContainer(this.value)"></label>
+        </div>
+        <div class="control-group">
+            <h4>CSS Filters (The "Instagram" Effect)</h4>
+            <label><input type="radio" name="filter" value="" onchange="setFilter('')" checked> None</label>
+            <label><input type="radio" name="filter" value="filter-bw" onchange="setFilter('filter-bw')"> B&W / Grayscale</label>
+            <label><input type="radio" name="filter" value="filter-sepia" onchange="setFilter('filter-sepia')"> Warm / Sepia</label>
+            <label><input type="radio" name="filter" value="filter-modern" onchange="setFilter('filter-modern')"> Modern/Clean</label>
+            <label><input type="radio" name="filter" value="filter-dark" onchange="setFilter('filter-dark')"> Fake Dark Mode (Invert)</label>
+        </div>
+    </div>
+
+    <div id="container" class="iframe-container">
+        <h2 style="text-align: center; font-family: 'Segoe UI', serif; font-weight: 300;">Reservas</h2>
+        <iframe id="the-iframe" src="https://beds24.com/booking2.php?propid=255007&referer=iframe"></iframe>
+    </div>
+
+    <script>
+        const iframe = document.getElementById('the-iframe');
+        const container = document.getElementById('container');
+        const baseUrl = "https://beds24.com/booking2.php?propid=255007&referer=iframe";
+
+        function updateIframeSrc() {
+            let url = baseUrl;
+            const useLocalCss = document.getElementById('chk-css').checked;
+            const externalCss = document.getElementById('txt-css-url').value;
+
+            if (useLocalCss) {
+                // Determine current local URL
+                const currentPath = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
+                const cssUrl = currentPath + '/custom_beds24.css';
+                // Note: local IPs usually don't work for external services unless public, but let's try
+                url += "&cssfile=" + encodeURIComponent(cssUrl);
+                console.log("Injecting Local CSS:", cssUrl);
+            } else if (externalCss) {
+                url += "&cssfile=" + encodeURIComponent(externalCss);
+                console.log("Injecting External CSS:", externalCss);
+            }
+
+            iframe.src = url;
+            console.log("New Iframe Source:", url);
+        }
+
+        function toggleContainer(className) {
+            container.classList.toggle(className);
+        }
+
+        function setFilter(className) {
+            // clear filters
+            iframe.className = '';
+            if (className) iframe.classList.add(className);
+        }
+
+        function resizeContainer(width) {
+            if (width > 2000) width = "100%"; // cheap hack for full width
+            container.style.maxWidth = width + (typeof width === 'string' ? '' : 'px');
+        }
+    </script>
+</body>
+</html>

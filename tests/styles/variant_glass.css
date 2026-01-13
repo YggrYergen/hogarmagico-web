@@ -1,0 +1,112 @@
+/* VARIANT 1: GLASSMORPHISM & BLUR */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* --- 1. Global Reset --- */
+body {
+    /* Abstract Gradient Background mandated by style */
+    /* Note: In production you might want an image URL here */
+    background: linear-gradient(45deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%) !important;
+    background-attachment: fixed !important;
+    font-family: 'Poppins', sans-serif !important;
+    color: #444 !important;
+}
+
+/* --- 2. The Glass Card Effect --- */
+.website-container,
+.propertysall,
+form,
+.booking-container {
+    background: rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1) !important;
+    padding: 30px !important;
+    margin: 30px auto !important;
+    max-width: 95% !important;
+}
+
+/* --- 3. Typography --- */
+h1,
+h2,
+h3,
+.roomnametext {
+    color: #fff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* --- 4. Inputs (Frosted Glass) --- */
+input,
+select,
+textarea {
+    background: rgba(255, 255, 255, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
+    border-radius: 12px !important;
+    padding: 12px 15px !important;
+    color: #333 !important;
+    font-size: 1rem !important;
+    backdrop-filter: blur(5px) !important;
+    transition: all 0.3s ease !important;
+}
+
+input:focus,
+select:focus {
+    background: rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
+    outline: none !important;
+}
+
+/* --- 5. Buttons (Soft Gradient) --- */
+.bookbutton,
+.greenbutton,
+input[type="submit"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    /* Purple/Blue */
+    color: white !important;
+    border: none !important;
+    border-radius: 50px !important;
+    /* Pill shape */
+    padding: 12px 30px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4) !important;
+    transition: transform 0.2s !important;
+    cursor: pointer !important;
+}
+
+.bookbutton:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 6px 20px rgba(118, 75, 162, 0.6) !important;
+}
+
+/* --- 6. Calendar --- */
+.caltable {
+    background: transparent !important;
+    border: none !important;
+}
+
+.calday {
+    border-radius: 8px !important;
+    margin: 2px !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.caldayselected {
+    background: #fff !important;
+    color: #764ba2 !important;
+    font-weight: bold !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Remove table borders */
+table,
+tr,
+td {
+    border: none !important;
+    background: transparent !important;
+}

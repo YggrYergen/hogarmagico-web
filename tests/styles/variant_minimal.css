@@ -1,0 +1,134 @@
+/* VARIANT 2: MINIMALIST & CONTEMPORARY */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+/* --- 1. Global Reset & Typography --- */
+body,
+table,
+tr,
+td,
+div,
+span,
+p,
+a,
+input,
+select,
+textarea {
+    font-family: 'Inter', sans-serif !important;
+    color: #333 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+body {
+    background-color: #f9f9f9 !important;
+    /* Soft white background */
+}
+
+/* --- 2. Container Cleanup --- */
+.website-container,
+.propertysall {
+    background: #fff !important;
+    max-width: 1000px !important;
+    margin: 20px auto !important;
+    padding: 40px !important;
+    border: none !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* --- 3. Headers & Text --- */
+.roomnametext,
+h1,
+h2,
+h3,
+.calmonth {
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    font-weight: 300 !important;
+    font-size: 1.5rem !important;
+    color: #000 !important;
+    border-bottom: 2px solid #000 !important;
+    padding-bottom: 15px !important;
+    margin-bottom: 20px !important;
+    background: transparent !important;
+}
+
+/* --- 4. Inputs & Forms --- */
+input,
+select,
+textarea {
+    border: 1px solid #ddd !important;
+    border-bottom: 2px solid #333 !important;
+    /* Underline style */
+    background-color: #fff !important;
+    padding: 12px !important;
+    font-size: 1rem !important;
+}
+
+input:focus,
+select:focus {
+    outline: none !important;
+    border-color: #000 !important;
+}
+
+/* --- 5. Buttons (Black & White) --- */
+.bookbutton,
+.greenbutton,
+input[type="submit"],
+input[type="button"],
+button {
+    background: #000 !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 15px 30px !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    background-image: none !important;
+    /* Remove Beds24 gradients */
+}
+
+.bookbutton:hover,
+.greenbutton:hover,
+button:hover {
+    background: #333 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* --- 6. Calendar Refinement --- */
+.caltable {
+    border-collapse: separate !important;
+    border-spacing: 5px !important;
+}
+
+.calday {
+    background: #f4f4f4 !important;
+    border: none !important;
+    font-weight: 400 !important;
+}
+
+.caldayselected,
+.selecteddate {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+.caldayavailable {
+    background: #fff !important;
+    border: 1px solid #eee !important;
+}
+
+/* --- 7. Hide Visual Clutter --- */
+.confirmationtable td {
+    border: none !important;
+}
+
+/* Hide header fully if param fails */
+#headerimg,
+.headertext {
+    display: none !important;
+}

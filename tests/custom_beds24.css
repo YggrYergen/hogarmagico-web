@@ -1,0 +1,164 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap');
+
+/* GLOBAL RESET & TYPOGRAPHY */
+body,
+.website-container,
+#content {
+    background-color: transparent !important;
+    font-family: 'Mulish', sans-serif !important;
+    color: #264653 !important;
+    /* color-ink */
+}
+
+/* LINKS */
+a {
+    color: #2A9D8F !important;
+    /* color-sea */
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+}
+
+a:hover {
+    color: #9B5DE5 !important;
+    /* color-spirit */
+}
+
+/* BUTTONS (Organic Pill Shape) */
+.bookbutton,
+.greenbutton,
+input[type="submit"],
+input[type="button"] {
+    background: #264653 !important;
+    /* color-ink */
+    color: #FDFCF8 !important;
+    /* color-sand */
+    border-radius: 9999px !important;
+    /* Full pill */
+    padding: 12px 32px !important;
+    border: none !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 15px rgba(38, 70, 83, 0.15) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.bookbutton:hover,
+.greenbutton:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    background: #2A9D8F !important;
+    /* color-sea */
+    transform: translateY(-2px) !important;
+}
+
+/* INPUTS & SELECTS (Glassmorphism) */
+input[type="text"],
+select,
+textarea,
+input.qty {
+    background: rgba(255, 255, 255, 0.6) !important;
+    border: 1px solid rgba(204, 174, 163, 0.3) !important;
+    /* color-earth with opacity */
+    border-radius: 12px !important;
+    padding: 10px 16px !important;
+    color: #264653 !important;
+    font-family: 'Mulish', sans-serif !important;
+    backdrop-filter: blur(4px) !important;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #2A9D8F !important;
+    outline: none !important;
+    background: white !important;
+}
+
+/* HEADERS */
+h1,
+h2,
+h3,
+h4,
+.roomnametext,
+.tableheader {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-weight: 600 !important;
+    color: #264653 !important;
+}
+
+.roomnametext {
+    font-size: 1.8rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* CALENDAR STYLING */
+.caltable {
+    border-collapse: separate !important;
+    border-spacing: 4px !important;
+    background: transparent !important;
+}
+
+.calmonth {
+    font-family: 'Cormorant Garamond', serif !important;
+    font-size: 1.4rem !important;
+    color: #2E294E !important;
+    /* color-night */
+}
+
+/* Calendar Days */
+.calday {
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    font-size: 0.9rem !important;
+    color: #264653 !important;
+}
+
+.caldayavailable {
+    background: rgba(255, 255, 255, 0.4) !important;
+}
+
+.caldaybooked {
+    background: rgba(204, 174, 163, 0.3) !important;
+    /* color-earth */
+    color: rgba(38, 70, 83, 0.4) !important;
+    text-decoration: line-through !important;
+}
+
+.caldayselected {
+    background: #2A9D8F !important;
+    /* color-sea */
+    color: white !important;
+    box-shadow: 0 4px 10px rgba(42, 157, 143, 0.3) !important;
+    border: none !important;
+}
+
+/* HIDE UNWANTED ELEMENTS */
+.copytext,
+img[src*="secure"],
+.floatleft,
+#star-rating {
+    display: none !important;
+}
+
+/* CARDS / CONTAINERS */
+.propentry {
+    background: rgba(255, 255, 255, 0.5) !important;
+    border-radius: 24px !important;
+    padding: 24px !important;
+    margin-bottom: 24px !important;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Dates Inputs Container */
+#search_params {
+    background: rgba(46, 41, 78, 0.03) !important;
+    /* color-night light */
+    padding: 20px !important;
+    border-radius: 20px !important;
+    margin-bottom: 30px !important;
+}

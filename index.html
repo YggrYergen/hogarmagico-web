@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogar Mágico | Refugios de Barro y Madera</title>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'color-sand': '#FDFCF8',
+                        'color-ink': '#264653',
+                        'color-sea': '#2A9D8F',
+                        'color-spirit': '#9B5DE5',
+                        'color-night': '#2E294E',
+                        'color-earth': '#CCAEA3',
+                        'color-adobe': '#CCAEA3',
+                        'color-adobe-light': '#E6D5CC',
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Mulish', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="bg-color-sand text-color-ink font-sans antialiased selection:bg-color-earth selection:text-white">
+
+    <!-- Global Floating Nav -->
+    <nav class="fixed z-50 w-full md:w-auto md:top-8 md:right-8 bottom-6 flex justify-center pointer-events-none">
+        <div
+            class="pointer-events-auto h-fit glass-nav rounded-full px-8 py-3 flex flex-row gap-6 md:gap-8 items-center transition-all hover:bg-white/60">
+            <a href="index.html" class="font-serif font-bold text-lg text-color-ink">Inicio</a>
+
+            <!-- Dropdown Item -->
+            <div class="relative nav-item-dropdown">
+                <a href="chascona.html" class="transition-colors flex items-center gap-1">
+                    Punta de Choros
+                </a>
+                <div class="nav-dropdown">
+                    <div class="dropdown-content flex flex-col gap-3">
+                        <a href="chascona.html"
+                            class="hover:text-color-sea transition-colors px-4 py-2 hover:bg-white/40 rounded-lg">La
+                            Chascona</a>
+                        <a href="lamar.html"
+                            class="hover:text-color-sea transition-colors px-4 py-2 hover:bg-white/40 rounded-lg">La
+                            Mar</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="calma.html" class="hover:text-color-spirit transition-colors">Cochiguaz</a>
+            <a href="contacto.html" class="hover:text-color-night transition-colors">Contacto</a>
+            <button onclick="window.toggleMobileMenu()" class="md:hidden p-2 text-color-ink focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="hidden fixed inset-0 bg-color-night/95 z-[100] flex-col items-center justify-center space-y-6 text-color-sand transition-all animate-fade-in">
+        <a href="index.html" class="mobile-nav-btn font-serif">Inicio</a>
+        <a href="chascona.html" class="mobile-nav-btn font-serif">La Chascona</a>
+        <a href="lamar.html" class="mobile-nav-btn font-serif">La Mar</a>
+        <a href="calma.html" class="mobile-nav-btn font-serif">Cochiguaz</a>
+        <button onclick="window.toggleMobileMenu()"
+            class="mt-12 text-sm border border-white/30 px-10 py-4 rounded-full hover:bg-white/10 transition-colors uppercase tracking-[0.2em]">Cerrar</button>
+    </div>
+
+    <!-- Hero Section: Split Screen Portal -->
+    <header class="relative w-full h-screen flex flex-col md:flex-row overflow-hidden">
+
+        <!-- Left Panel: Punta de Choros -->
+        <a href="chascona.html"
+            class="group relative flex-1 h-1/2 md:h-full bg-color-sea overflow-hidden flex items-center justify-center text-center cursor-pointer transition-all duration-700 md:hover:flex-[1.2]">
+            <!-- Image Container -->
+            <div class="absolute inset-0 z-0">
+                <img src="images/portal-mar-1.jpg"
+                    class="portal-bg-left absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100"
+                    alt="Punta de Choros 1">
+                <img src="images/portal-mar-2.jpg"
+                    class="portal-bg-left absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
+                    alt="Punta de Choros 2">
+                <img src="images/portal-mar-3.jpg"
+                    class="portal-bg-left absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
+                    alt="Punta de Choros 3">
+            </div>
+            <!-- Overlay & Content -->
+            <div class="absolute inset-0 bg-color-ink/20 group-hover:bg-color-ink/10 transition-colors z-10"></div>
+            <div class="relative z-20 text-white p-6">
+                <h2 class="text-4xl md:text-6xl font-serif mb-2 drop-shadow-lg">Punta de Choros</h2>
+                <p class="text-lg md:text-xl font-light italic opacity-90">"El Canto del Mar"</p>
+                <span
+                    class="mt-8 inline-block opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white/20 px-8 py-2 rounded-full backdrop-blur-sm border border-white/30">Explorar</span>
+            </div>
+            <!-- Organic Curve Separator (Right side of this panel) -->
+            <div class="absolute top-0 right-0 bottom-0 w-4 bg-adobe-light z-10 hidden md:block"
+                style="border-radius: 0 50% 50% 0; transform: translateX(50%);"></div>
+            <!-- Texture -->
+            <div class="absolute inset-0 bg-noise mix-blend-multiply opacity-40 z-10"></div>
+        </a>
+
+        <!-- Right Panel: Cochiguaz -->
+        <a href="calma.html"
+            class="group relative flex-1 h-1/2 md:h-full bg-color-spirit overflow-hidden flex items-center justify-center text-center cursor-pointer transition-all duration-700 md:hover:flex-[1.2]">
+            <!-- Image Container -->
+            <div class="absolute inset-0 z-0">
+                <img src="images/portal-valle-1.jpg"
+                    class="portal-bg-right absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100"
+                    alt="Cochiguaz 1">
+                <img src="images/portal-valle-2.jpg"
+                    class="portal-bg-right absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
+                    alt="Cochiguaz 2">
+                <img src="images/portal-valle-3.jpg"
+                    class="portal-bg-right absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
+                    alt="Cochiguaz 3">
+            </div>
+            <!-- Overlay & Content -->
+            <div class="absolute inset-0 bg-color-night/20 group-hover:bg-color-night/10 transition-colors z-10"></div>
+            <div class="relative z-20 text-white p-6">
+                <h2 class="text-4xl md:text-6xl font-serif mb-2 drop-shadow-lg">Cochiguaz</h2>
+                <p class="text-lg md:text-xl font-light italic opacity-90">"El Silencio del Valle"</p>
+                <span
+                    class="mt-8 inline-block opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 bg-white/20 px-8 py-2 rounded-full backdrop-blur-sm border border-white/30">Descubrir</span>
+            </div>
+            <!-- Organic Curve Separator (Left side of this panel) -->
+            <div class="absolute top-0 left-0 bottom-0 w-4 bg-adobe z-10 hidden md:block"
+                style="border-radius: 50% 0 0 50%; transform: translateX(-50%);"></div>
+            <!-- Texture -->
+            <div class="absolute inset-0 bg-noise mix-blend-multiply opacity-40 z-10"></div>
+        </a>
+
+    </header>
+
+    <!-- Refined Heritage Section -->
+    <section class="py-16 md:py-24 px-6 bg-color-sand text-center border-b border-color-earth/20">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-6xl md:text-8xl font-serif text-color-ink mb-6 reveal-on-scroll">Hogar Mágico</h1>
+            <div class="text-color-earth text-lg md:text-2xl font-light tracking-[0.2em] uppercase reveal-on-scroll leading-relaxed"
+                style="transition-delay: 0.2s;">
+                <p>Si la vida nos reúne aquí</p>
+                <p class="magic-glow mt-4">es porque la magia existe</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section: The Manifesto & Property Cards -->
+    <section class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+        <div class="text-center mb-20 reveal-on-scroll">
+            <h2 class="text-4xl md:text-6xl font-serif mb-8 text-color-ink leading-tight">Arquitectura que
+                respira,<br><span class="text-color-sea">naturaleza que abraza.</span></h2>
+            <div class="flex gap-4 justify-center">
+                <div class="w-12 h-1 bg-color-earth rounded-full"></div>
+                <div class="w-4 h-1 bg-color-earth/30 rounded-full"></div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+            <!-- La Chascona Card -->
+            <a href="chascona.html" class="group relative aspect-square reveal-on-scroll"
+                style="transition-delay: 0.1s;">
+                <div
+                    class="blob-1 absolute inset-0 bg-color-sea/10 animate-pulse group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div
+                    class="blob-1 absolute inset-3 overflow-hidden shadow-2xl group-hover:scale-105 transition-transform duration-700">
+                    <img src="images/chascona-hero.jpg" alt="La Chascona" class="w-full h-full object-cover">
+                    <div
+                        class="absolute inset-0 bg-color-night/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-white font-serif text-2xl drop-shadow-lg">La Chascona</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- La Mar Card -->
+            <a href="lamar.html" class="group relative aspect-square reveal-on-scroll" style="transition-delay: 0.3s;">
+                <div
+                    class="blob-2 absolute inset-0 bg-color-sea/10 animate-pulse group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div
+                    class="blob-2 absolute inset-3 overflow-hidden shadow-2xl group-hover:scale-105 transition-transform duration-700">
+                    <img src="images/portal-mar-1.jpg" alt="La Mar" class="w-full h-full object-cover">
+                    <div
+                        class="absolute inset-0 bg-color-night/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-white font-serif text-2xl drop-shadow-lg">La Mar</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- La Calma Card -->
+            <a href="calma.html" class="group relative aspect-square reveal-on-scroll" style="transition-delay: 0.5s;">
+                <div
+                    class="blob-3 absolute inset-0 bg-color-spirit/10 animate-pulse group-hover:scale-105 transition-transform duration-700">
+                </div>
+                <div
+                    class="blob-3 absolute inset-3 overflow-hidden shadow-2xl group-hover:scale-105 transition-transform duration-700">
+                    <img src="images/portal-valle-1.jpg" alt="La Calma" class="w-full h-full object-cover">
+                    <div
+                        class="absolute inset-0 bg-color-night/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="text-white font-serif text-2xl drop-shadow-lg">La Calma</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Unified Footer -->
+    <footer id="footer" class="bg-color-night text-color-sand py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-16 border-b border-white/10 pb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="font-serif text-4xl mb-6">Hogar Mágico</h3>
+                    <p class="opacity-70 font-light max-w-sm">Refugios eco-sustentables diseñados para reconectar con lo
+                        esencial. Elqui y Punta de Choros.</p>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl mb-6 text-color-earth">Destinos</h4>
+                    <ul class="space-y-4 opacity-70">
+                        <li><a href="chascona.html" class="hover:text-color-sea transition-colors">La Chascona</a></li>
+                        <li><a href="lamar.html" class="hover:text-color-sea transition-colors">La Mar</a></li>
+                        <li><a href="calma.html" class="hover:text-color-spirit transition-colors">La Calma</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-serif text-xl mb-6 text-color-earth">Social</h4>
+                    <ul class="space-y-4 opacity-70">
+                        <li><a href="https://instagram.com/hogarmagico.cl"
+                                class="hover:text-color-sea transition-colors">Instagram</a></li>
+                        <li><a href="https://wa.me/56999495420"
+                                class="hover:text-color-sea transition-colors">WhatsApp</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 opacity-40 text-sm">
+                <p>&copy; 2024 Hogar Mágico. Todos los derechos reservados.</p>
+                <p>Hecho con amor en el Valle de Elqui.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

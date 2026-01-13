@@ -1,0 +1,233 @@
+/* Hogar Mágico - Global Styles */
+
+/* 1. Morphology - The "Anti-Template" Shapes */
+.blob-shape,
+.blob-1 {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+.blob-2 {
+    border-radius: 40% 60% 70% 30% / 50% 60% 30% 60%;
+}
+
+.blob-3 {
+    border-radius: 50% 50% 30% 70% / 50% 30% 70% 50%;
+}
+
+.arch-mask {
+    border-radius: 50% 50% 0 0;
+}
+
+/* 2. Animation Physics */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-on-scroll.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Shooting Star Animation */
+@keyframes shooting-star {
+    0% {
+        transform: rotate(-45deg) translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(-45deg) translateX(500px);
+        opacity: 0;
+    }
+}
+
+.shooting-star {
+    animation: shooting-star 1.5s linear forwards;
+}
+
+/* 3. Micro-interactions */
+.glass-nav {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.btn-organic {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-organic:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* 4. Textures & Backgrounds */
+.bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* 5. Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #FDFCF8;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #CCAEA3;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #264653;
+}
+
+/* 6. Navigation Dropdowns */
+.nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    opacity: 0;
+    pointer-events: none;
+
+    /* 7. Marquee Animation */
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .animate-scroll {
+        animation: scroll 40s linear infinite;
+    }
+
+    .animate-scroll:hover {
+        animation-play-state: paused;
+    }
+
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 2rem;
+    padding: 0.75rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+.nav-item-dropdown.is-active .nav-dropdown {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Force Mobile Upward Direction & Refinements */
+@media (max-width: 768px) {
+    .nav-item-dropdown .nav-dropdown {
+        top: auto !important;
+        bottom: 100% !important;
+        padding-top: 0 !important;
+        padding-bottom: 2rem !important;
+        transform: translateX(-50%) translateY(0) !important;
+    }
+
+    .nav-item-dropdown.is-active .nav-dropdown {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: translateX(-50%) translateY(-10px) !important;
+    }
+
+    /* Mobile Nav Refinements: Single line & No Icon */
+    .nav-item-dropdown>a {
+        white-space: nowrap !important;
+    }
+
+    .nav-item-dropdown>a svg {
+        display: none !important;
+    }
+}
+
+#mobile-menu {
+    height: 100dvh !important;
+    width: 100vw !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 1000 !important;
+    background-color: rgba(46, 41, 78, 0.98) !important;
+    /* Night color */
+    display: none;
+    /* Controlled by js */
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 2rem !important;
+}
+
+#mobile-menu.flex {
+    display: flex !important;
+}
+
+.mobile-nav-btn {
+    width: 85% !important;
+    max-width: 320px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    padding: 1.25rem !important;
+    border-radius: 99px !important;
+    text-align: center !important;
+    color: white !important;
+    font-size: 1.15rem !important;
+    font-family: 'Cormorant Garamond', serif !important;
+    transition: all 0.3s ease !important;
+    margin-bottom: 1rem !important;
+}
+
+.mobile-nav-btn:active {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: scale(0.95) !important;
+}
+
+/* 8. Adobe Tones & Magic Glow */
+.bg-adobe-light {
+    background-color: #E6D5CC;
+}
+
+.bg-adobe {
+    background-color: #CCAEA3;
+}
+
+.magic-glow {
+    color: #CCAEA3;
+    letter-spacing: 0.3em;
+    font-weight: 500;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 0 20px rgba(204, 174, 163, 0.6);
+    animation: magic-pulse 4s infinite ease-in-out;
+}
+
+@keyframes magic-pulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 10px rgba(204, 174, 163, 0.3);
+        transform: scale(1);
+    }
+
+    50% {
+        text-shadow: 0 0 30px rgba(204, 174, 163, 0.9);
+        transform: scale(1.02);
+    }
+}

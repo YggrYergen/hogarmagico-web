@@ -1,0 +1,134 @@
+/* VARIANT 4: ELEGANT & CLASSIC */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap');
+
+/* --- 1. Global & Background --- */
+body {
+    background-color: #0f1620 !important;
+    /* Deep Navy Blue */
+    font-family: 'Lato', sans-serif !important;
+    color: #e0e0e0 !important;
+}
+
+/* --- 2. Typography (Serif Headers) --- */
+h1,
+h2,
+h3,
+h4,
+.roomnametext,
+.calmonth {
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+    color: #d4af37 !important;
+    /* Metallic Gold */
+    text-transform: capitalize !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+    background: transparent !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important;
+    padding-bottom: 10px !important;
+}
+
+/* --- 3. Containers (Card Style) --- */
+.website-container,
+.booking-container,
+.propertysall {
+    background: #1a252f !important;
+    /* Lighter Navy */
+    border: 1px solid #d4af37 !important;
+    /* Gold Border */
+    border-radius: 4px !important;
+    padding: 30px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
+    max-width: 1100px !important;
+    margin: 30px auto !important;
+}
+
+/* --- 4. Inputs & Tables --- */
+table,
+td,
+tr {
+    background: transparent !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
+    color: #ccc !important;
+}
+
+input,
+select,
+textarea {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid #444 !important;
+    color: #fff !important;
+    font-family: 'Lato', sans-serif !important;
+    padding: 10px !important;
+    border-radius: 2px !important;
+}
+
+input:focus {
+    border-color: #d4af37 !important;
+    outline: none !important;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2) !important;
+}
+
+/* --- 5. Buttons (Gold & Navy) --- */
+.bookbutton,
+.greenbutton,
+input[type="submit"],
+button {
+    background: linear-gradient(135deg, #d4af37 0%, #aa8a29 100%) !important;
+    /* Gold Gradient */
+    color: #0d1219 !important;
+    /* Dark text on gold */
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    padding: 12px 35px !important;
+    border: none !important;
+    border-radius: 2px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
+    transition: transform 0.2s, box-shadow 0.2s !important;
+}
+
+.bookbutton:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5) !important;
+    background: #fff !important;
+    /* Flash to white on hover */
+}
+
+/* --- 6. Calendar --- */
+.caltable {
+    border: 1px solid #333 !important;
+}
+
+.calday {
+    background: #111 !important;
+    border: 1px solid #222 !important;
+}
+
+.caldayselected,
+.selecteddate {
+    background: #d4af37 !important;
+    color: #000 !important;
+    font-weight: bold !important;
+}
+
+.caldayavailable {
+    background: #1e2b36 !important;
+    color: #fff !important;
+}
+
+/* --- 7. Price Tags --- */
+.price {
+    color: #fff !important;
+    font-size: 1.4rem !important;
+    font-weight: 300 !important;
+}
+
+.currency {
+    color: #d4af37 !important;
+    font-size: 0.9rem !important;
+    vertical-align: super !important;
+}

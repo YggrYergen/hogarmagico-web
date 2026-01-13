@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa La Calma | Hogar Mágico</title>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'color-sand': '#FDFCF8',
+                        'color-ink': '#264653',
+                        'color-sea': '#2A9D8F',
+                        'color-spirit': '#9B5DE5',
+                        'color-night': '#2E294E',
+                        'color-earth': '#CCAEA3',
+                        'color-adobe': '#CCAEA3',
+                        'color-adobe-light': '#E6D5CC',
+                        'color-sunset': '#D38E6E',
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Mulish', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* CSS Stars for Night Mode */
+        .stars-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        .night-active .stars-container {
+            opacity: 1;
+        }
+
+        .night-active {
+            background-color: #1A1A2E !important;
+            color: #FDFCF8;
+        }
+    </style>
+</head>
+
+<body class="bg-color-sand text-color-ink font-sans antialiased selection:bg-color-spirit selection:text-white">
+
+    <nav class="fixed z-50 w-full md:w-auto md:top-8 md:right-8 bottom-6 flex justify-center pointer-events-none">
+        <div
+            class="pointer-events-auto h-fit glass-nav rounded-full px-8 py-3 flex flex-row gap-6 md:gap-8 items-center transition-all hover:bg-white/60">
+            <a href="index.html" class="hover:text-color-sea transition-colors">Inicio</a>
+
+            <!-- Dropdown Item -->
+            <div class="relative nav-item-dropdown">
+                <a href="chascona.html" class="hover:text-color-sea transition-colors flex items-center gap-1">
+                    Punta de Choros
+                </a>
+                <div class="nav-dropdown">
+                    <div class="dropdown-content flex flex-col gap-3">
+                        <a href="chascona.html"
+                            class="hover:text-color-sea transition-colors px-4 py-2 hover:bg-white/40 rounded-lg">La
+                            Chascona</a>
+                        <a href="lamar.html"
+                            class="hover:text-color-sea transition-colors px-4 py-2 hover:bg-white/40 rounded-lg">La
+                            Mar</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="calma.html" class="font-serif font-bold text-lg text-color-spirit">Cochiguaz</a>
+            <a href="contacto.html" class="hover:text-color-night transition-colors">Contacto</a>
+            <button onclick="window.toggleMobileMenu()" class="md:hidden p-2 text-color-ink focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="hidden fixed inset-0 bg-color-night/95 z-[100] flex-col items-center justify-center space-y-6 text-color-sand transition-all animate-fade-in">
+        <a href="index.html" class="mobile-nav-btn font-serif">Inicio</a>
+        <a href="chascona.html" class="mobile-nav-btn font-serif">La Chascona</a>
+        <a href="lamar.html" class="mobile-nav-btn font-serif">La Mar</a>
+        <a href="calma.html" class="mobile-nav-btn font-serif">Cochiguaz</a>
+        <button onclick="window.toggleMobileMenu()"
+            class="mt-12 text-sm border border-white/30 px-10 py-4 rounded-full hover:bg-white/10 transition-colors uppercase tracking-[0.2em]">Cerrar</button>
+    </div>
+
+    <main>
+
+        <!-- Hero Section -->
+        <header
+            class="relative w-full h-[80vh] flex items-center justify-center text-center px-6 overflow-hidden bg-gradient-to-br from-color-sunset to-color-spirit">
+            <div id="hero-stars" class="stars-container opacity-100"></div>
+            <img src="images/calma-hero.jpg" id="hero-img"
+                class="absolute inset-x-0 -top-20 -bottom-20 w-full h-[120%] object-cover mix-blend-multiply opacity-60 transition-all duration-[2000ms]"
+                data-speed="0.2">
+
+            <div class="relative z-10 text-white max-w-4xl">
+                <h1 class="text-6xl md:text-8xl font-serif mb-4 drop-shadow-lg reveal-on-scroll">Casa La Calma</h1>
+                <p class="text-xl md:text-3xl font-light italic mb-8 reveal-on-scroll">"Alma Zen en el Valle de Elqui."
+                </p>
+                <a href="#contacto"
+                    class="btn-organic inline-block bg-white/20 backdrop-blur-md border border-white/40 text-white px-10 py-3 rounded-full hover:bg-white hover:text-color-spirit transition-all duration-300 reveal-on-scroll">Desconectar</a>
+            </div>
+
+            <div class="absolute bottom-0 left-0 w-full leading-none z-20 parallax-item transition-all duration-[2000ms]"
+                data-speed="0.05">
+                <svg id="hero-divider"
+                    class="block w-full h-24 md:h-32 text-color-sand transition-colors duration-[2000ms]"
+                    viewBox="0 0 1200 120" preserveAspectRatio="none" fill="currentColor">
+                    <path d="M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,120 L0,120 Z"
+                        fill="currentColor"></path>
+                </svg>
+            </div>
+        </header>
+
+        <!-- Wellness Grid -->
+        <section id="wellness-section"
+            class="py-32 px-6 md:px-20 max-w-full mx-auto space-y-32 relative transition-all duration-[2000ms]">
+            <div id="wellness-stars" class="stars-container opacity-100"></div>
+            <div class="max-w-6xl mx-auto space-y-32 relative z-10">
+
+                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 reveal-on-scroll">
+                    <div class="w-full md:w-1/2">
+                        <div class="blob-shape overflow-hidden shadow-xl hover:shadow-2xl h-80 md:h-96">
+                            <img src="images/calma-piscina.jpg"
+                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-center md:text-left transition-all duration-[2000ms]">
+                        <h2 class="text-4xl font-serif text-color-spirit mb-4 wellness-title">Piscina Bajo el Sol</h2>
+                        <p class="text-lg text-color-ink/80 leading-relaxed wellness-desc">
+                            Sumérgete en aguas refrescantes mientras el sol del valle acaricia tu piel. Un oasis privado
+                            rodeado de cerros y silencio.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-20 reveal-on-scroll">
+                    <div class="w-full md:w-1/2">
+                        <div class="blob-shape overflow-hidden shadow-xl hover:shadow-2xl h-80 md:h-96"
+                            style="border-radius: 40% 60% 70% 30% / 50% 30% 70% 50%;">
+                            <img src="images/calma-tinaja.jpg"
+                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-center md:text-right transition-all duration-[2000ms]">
+                        <h2 class="text-4xl font-serif text-color-sunset mb-2 wellness-title">Tinaja Caliente</h2>
+                        <span
+                            class="text-sm font-bold uppercase tracking-widest text-color-earth mb-4 block wellness-tag">Experiencia
+                            Premium ($50.000)</span>
+                        <p class="text-lg text-color-ink/80 leading-relaxed wellness-desc">
+                            Bajo las estrellas, el agua caliente relaja cada músculo. La experiencia definitiva del
+                            Valle de Elqui.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 reveal-on-scroll">
+                    <div class="w-full md:w-1/2">
+                        <div class="blob-shape overflow-hidden shadow-xl hover:shadow-2xl h-80 md:h-96">
+                            <img src="images/calma-jardin.jpg"
+                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 text-center md:text-left transition-all duration-[2000ms]">
+                        <h2 class="text-4xl font-serif text-color-ink mb-4 wellness-title">Silencio Absoluto</h2>
+                        <p class="text-lg text-color-ink/80 leading-relaxed wellness-desc">
+                            Desconexión total. Aquí, el único sonido es el viento en los árboles y tu propia
+                            respiración.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Night Mode Section -->
+        <section id="night-section"
+            class="py-32 px-6 text-center relative transition-all duration-[2000ms] bg-color-sand overflow-hidden">
+            <div id="stars-bg" class="stars-container opacity-100"></div>
+            <div class="relative z-10 max-w-3xl mx-auto transition-colors duration-1000" id="night-content">
+                <h2 class="text-4xl md:text-6xl font-serif mb-6 reveal-on-scroll">Cielos más limpios del mundo</h2>
+                <p class="text-lg mb-12 opacity-80 reveal-on-scroll">Observatorio Cancána cercano. Prepárate para el
+                    espectáculo.</p>
+
+                <button onclick="toggleNightMode()"
+                    class="group relative px-8 py-4 bg-color-night text-color-sand rounded-full font-serif text-xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300">
+                    <span class="relative z-10 flex items-center gap-3">
+                        <span id="btn-text">Apagar Luces</span>
+                        <svg class="w-5 h-5" id="bulb-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                            </path>
+                        </svg>
+                    </span>
+                    <div class="absolute inset-0 bg-color-spirit opacity-0 group-hover:opacity-20 transition-opacity">
+                    </div>
+                </button>
+
+                <div class="mt-16 border-t border-current opacity-30 w-1/2 mx-auto"></div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 text-left text-sm opacity-80 reveal-on-scroll">
+                    <div>
+                        <strong class="block text-lg mb-2">Fauna Nativa</strong>
+                        <p>Respetamos al zorro chilla. Por favor, no los alimentes.</p>
+                    </div>
+                    <div>
+                        <strong class="block text-lg mb-2">Eco-Sistema</strong>
+                        <p>Energía solar y eólica. Evita secadores de pelo de noche para cuidar nuestras baterías.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="py-24 overflow-hidden bg-color-sand relative transition-colors duration-[2000ms]">
+
+            <div class="max-w-7xl mx-auto px-6 mb-16 text-center reveal-on-scroll">
+                <h2 class="text-4xl md:text-5xl font-serif text-color-ink wellness-title">Voces del Valle</h2>
+                <div class="flex justify-center gap-1 mt-4 text-color-spirit">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="w-full relative">
+                <div class="flex gap-8 animate-scroll w-max px-6">
+                    <div
+                        class="w-[350px] md:w-[450px] p-8 glass-nav rounded-[2rem] border border-white/40 flex flex-col gap-6 select-none hover:bg-white/60 transition-colors">
+                        <p class="text-lg italic text-color-ink/80 wellness-desc">"Nunca había sentido una tranquilidad
+                            igual. La tinaja bajo las estrellas es una experiencia religiosa."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-color-spirit/20 blob-1 overflow-hidden shrink-0">
+                                <img src="images/calma-tinaja.jpg"
+                                    class="w-full h-full object-cover opacity-80 mix-blend-multiply">
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-lg wellness-title">Camila O.</h4>
+                                <span class="text-xs uppercase tracking-widest opacity-60">Santiago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="w-[350px] md:w-[450px] p-8 glass-nav rounded-[2rem] border border-white/40 flex flex-col gap-6 select-none hover:bg-white/60 transition-colors">
+                        <p class="text-lg italic text-color-ink/80 wellness-desc">"El diseño es espectacular. moderno
+                            pero cálido. Se nota el amor en cada detalle de la casa."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-color-sunset/20 blob-2 overflow-hidden shrink-0">
+                                <img src="images/calma-piscina.jpg"
+                                    class="w-full h-full object-cover opacity-80 mix-blend-multiply">
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-lg wellness-title">Roberto M.</h4>
+                                <span class="text-xs uppercase tracking-widest opacity-60">Antofagasta</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="w-[350px] md:w-[450px] p-8 glass-nav rounded-[2rem] border border-white/40 flex flex-col gap-6 select-none hover:bg-white/60 transition-colors">
+                        <p class="text-lg italic text-color-ink/80 wellness-desc">"Desconexión total. Volvimos
+                            renovados. Gracias por compartir este rincón del paraíso."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-color-ink/20 blob-3 overflow-hidden shrink-0">
+                                <img src="images/calma-jardin.jpg"
+                                    class="w-full h-full object-cover opacity-80 mix-blend-multiply">
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-lg wellness-title">Isabel & Juan</h4>
+                                <span class="text-xs uppercase tracking-widest opacity-60">La Serena</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Repeats -->
+                    <div
+                        class="w-[350px] md:w-[450px] p-8 glass-nav rounded-[2rem] border border-white/40 flex flex-col gap-6 select-none hover:bg-white/60 transition-colors">
+                        <p class="text-lg italic text-color-ink/80 wellness-desc">"Nunca había sentido una tranquilidad
+                            igual. La tinaja bajo las estrellas es una experiencia religiosa."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-color-spirit/20 blob-1 overflow-hidden shrink-0">
+                                <img src="images/calma-tinaja.jpg"
+                                    class="w-full h-full object-cover opacity-80 mix-blend-multiply">
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-lg wellness-title">Camila O.</h4>
+                                <span class="text-xs uppercase tracking-widest opacity-60">Santiago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="w-[350px] md:w-[450px] p-8 glass-nav rounded-[2rem] border border-white/40 flex flex-col gap-6 select-none hover:bg-white/60 transition-colors">
+                        <p class="text-lg italic text-color-ink/80 wellness-desc">"El diseño es espectacular. moderno
+                            pero cálido. Se nota el amor en cada detalle de la casa."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-color-sunset/20 blob-2 overflow-hidden shrink-0">
+                                <img src="images/calma-piscina.jpg"
+                                    class="w-full h-full object-cover opacity-80 mix-blend-multiply">
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-lg wellness-title">Roberto M.</h4>
+                                <span class="text-xs uppercase tracking-widest opacity-60">Antofagasta</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="w-[350px] md:w-[450px] p-8 glass-nav rounded-[2rem] border border-white/40 flex flex-col gap-6 select-none hover:bg-white/60 transition-colors">
+                        <p class="text-lg italic text-color-ink/80 wellness-desc">"Desconexión total. Volvimos
+                            renovados. Gracias por compartir este rincón del paraíso."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-color-ink/20 blob-3 overflow-hidden shrink-0">
+                                <img src="images/calma-jardin.jpg"
+                                    class="w-full h-full object-cover opacity-80 mix-blend-multiply">
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-lg wellness-title">Isabel & Juan</h4>
+                                <span class="text-xs uppercase tracking-widest opacity-60">La Serena</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Section -->
+        <section id="reservas" class="py-24 relative bg-color-sand transition-colors duration-[2000ms]">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <span class="text-color-spirit font-bold uppercase tracking-widest text-sm mb-4 block">Reserva en El
+                        Valle</span>
+                    <h2 class="text-4xl md:text-5xl font-serif text-color-ink wellness-title">Tu Momento de Calma</h2>
+                </div>
+
+                <!-- Iframe Container -->
+                <div class="relative bg-white/50 backdrop-blur-sm rounded-[3rem] p-4 md:p-8 shadow-2xl border border-white/60 reveal-on-scroll"
+                    style="transition-delay: 0.2s;">
+                    <!-- Blob Decoration -->
+                    <div class="absolute -top-10 -left-10 w-32 h-32 bg-color-spirit/10 blob-3 -z-10"></div>
+                    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-color-sunset/20 blob-2 -z-10"></div>
+
+                    <!-- Beds24 Iframe -->
+                    <iframe
+                        src="https://beds24.com/booking2.php?propid=255007&hideheader=window&hidefooter=window&lang=es&cssfile=https://hogarmagico-preview.pages.dev/tests/custom_beds24.css"
+                        width="100%" height="1200" style="border:none; border-radius: 2rem; overflow: hidden;"
+                        scrolling="auto" allowtransparency="true">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="max-w-7xl mx-auto px-6 mb-32">
+            <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 text-color-ink reveal-on-scroll">Galería del
+                Silencio</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[600px]">
+                <div class="col-span-2 row-span-2 overflow-hidden rounded-3xl reveal-on-scroll">
+                    <img src="images/calma-piscina.jpg"
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="overflow-hidden rounded-3xl reveal-on-scroll" style="transition-delay: 0.1s;">
+                    <img src="images/calma-tinaja.jpg"
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="overflow-hidden rounded-3xl reveal-on-scroll" style="transition-delay: 0.2s;">
+                    <img src="images/calma-jardin.jpg"
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="col-span-2 overflow-hidden rounded-3xl reveal-on-scroll" style="transition-delay: 0.3s;">
+                    <img src="images/calma-hero.jpg"
+                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-color-night text-color-sand py-16">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center md:text-left">
+            <div>
+                <h3 class="font-serif text-3xl mb-4">Hogar Mágico</h3>
+                <p class="opacity-70 font-light">Refugios eco-sustentables.</p>
+            </div>
+            <div class="flex flex-col gap-4 text-center">
+                <a href="https://instagram.com/hogarmagico.cl"
+                    class="hover:text-color-sea transition-colors">@hogarmagico.cl</a>
+                <a href="https://wa.me/56999495420" class="hover:text-color-sea transition-colors">+56 9 99495420</a>
+            </div>
+            <div class="text-center md:text-right opacity-50 text-sm">
+                <p>&copy; 2024 Hogar Mágico.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        function generateStars(containerId, count, progressive = false) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                let top = progressive ? Math.pow(Math.random(), 2) * 100 : Math.random() * 100;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = top + '%';
+                star.style.width = (0.5 + Math.random() * 1.5) + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(star);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            generateStars('hero-stars', 100, true);
+            generateStars('wellness-stars', 80, false);
+            generateStars('stars-bg', 60, false);
+        });
+
+        function toggleNightMode() {
+            const nightSection = document.getElementById('night-section');
+            const wellnessSection = document.getElementById('wellness-section');
+            const heroDivider = document.getElementById('hero-divider');
+            const heroImg = document.getElementById('hero-img');
+            const btnText = document.getElementById('btn-text');
+            const wellnessDesc = document.querySelectorAll('.wellness-desc');
+            const wellnessTitles = document.querySelectorAll('.wellness-title');
+
+            const isNight = nightSection.classList.toggle('night-active');
+            wellnessSection.classList.toggle('night-active', isNight);
+
+            if (isNight) {
+                btnText.textContent = "Encender Luces";
+                const nightIndigo = "#1A1A2E";
+                nightSection.style.backgroundColor = nightIndigo;
+                wellnessSection.style.backgroundColor = nightIndigo;
+                heroDivider.style.color = nightIndigo;
+                heroImg.style.opacity = "0.2";
+                wellnessDesc.forEach(p => p.classList.replace('text-color-ink/80', 'text-color-sand/80'));
+                wellnessTitles.forEach(h2 => {
+                    if (h2.classList.contains('text-color-ink')) h2.classList.replace('text-color-ink', 'text-color-sand');
+                });
+                window.shootingStarInterval = setInterval(() => {
+                    if (window.createShootingStar) {
+                        window.createShootingStar('stars-bg');
+                        if (Math.random() > 0.5) window.createShootingStar('wellness-stars');
+                        window.createShootingStar('hero-stars', true);
+                    }
+                }, 1500);
+            } else {
+                btnText.textContent = "Apagar Luces";
+                nightSection.style.backgroundColor = "";
+                wellnessSection.style.backgroundColor = "";
+                heroDivider.style.color = "";
+                heroImg.style.opacity = "0.6";
+                wellnessDesc.forEach(p => p.classList.replace('text-color-sand/80', 'text-color-ink/80'));
+                wellnessTitles.forEach(h2 => {
+                    if (h2.classList.contains('text-color-sand')) h2.classList.replace('text-color-sand', 'text-color-ink');
+                });
+                clearInterval(window.shootingStarInterval);
+            }
+        }
+    </script>
+</body>
+
+</html>

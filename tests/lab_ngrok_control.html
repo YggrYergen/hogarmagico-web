@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beds24 Stylist Control Surface</title>
+    <style>
+        /* Base styles for the control page */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #e0e0e0;
+            /* Placeholder background image to test transparencies */
+            background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Control Panel */
+        .controls {
+            background: rgba(255, 255, 255, 0.95);
+            width: 90%;
+            max-width: 1200px;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .control-group {
+            flex: 1;
+            min-width: 250px;
+            border-right: 1px solid #ccc;
+            padding-right: 20px;
+        }
+
+        .control-group:last-child {
+            border-right: none;
+        }
+
+        h2,
+        h4 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        /* Inputs */
+        .input-row {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            flex: 1;
+            margin-left: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Style Buttons */
+        .style-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .btn-style {
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-style:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .btn-style::after {
+            content: 'Apply';
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+
+        /* Button Themes matching CSS */
+        .btn-glass {
+            background: linear-gradient(135deg, #667eea99 0%, #764ba299 100%);
+            color: white;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-minimal {
+            background: #fff;
+            border: 2px solid #000;
+            color: #000;
+        }
+
+        .btn-dark {
+            background: #111;
+            color: #0f0;
+            border: 1px solid #0f0;
+        }
+
+        .btn-elegant {
+            background: #1a252f;
+            color: #d4af37;
+            font-family: 'Times New Roman', serif;
+        }
+
+        /* Iframe Area */
+        .iframe-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px 0;
+            background: transparent;
+            min-height: 800px;
+            position: relative;
+        }
+
+        iframe {
+            width: 100%;
+            height: 1200px;
+            border: none;
+            border-radius: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: #333;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="controls">
+        <div class="control-group">
+            <h2>1. Conexión (Ngrok)</h2>
+            <p style="font-size: 0.8rem; color: #666;">Pega aquí tu URL pública de Ngrok (https://xxxx.ngrok.io)</p>
+            <div class="input-row">
+                <input type="text" id="ngrok-url" placeholder="Paste Ngrok HTTPS URL here..." onchange="updateUrl()">
+            </div>
+            <div class="input-row">
+                <label><input type="checkbox" id="chk-hideheader" onchange="updateUrl()"> Hide Header</label>
+            </div>
+            <div class="input-row">
+                <label><input type="checkbox" id="chk-hidefooter" onchange="updateUrl()"> Hide Footer</label>
+            </div>
+            <p style="font-size:0.8rem; margin-top:10px;">Status: <span id="status-text">Waiting for URL...</span></p>
+        </div>
+
+        <div class="control-group">
+            <h2>2. Selector de Estilo</h2>
+            <div class="style-grid">
+                <button class="btn-style btn-glass" onclick="setStyle('variant_glass.css')">
+                    🔮 Glassmorphism<br><small>Transparencia, Blur, Gradientes</small>
+                </button>
+                <button class="btn-style btn-minimal" onclick="setStyle('variant_minimal.css')">
+                    ⬜ Minimalist<br><small>B&W, Clean, No Borders</small>
+                </button>
+                <button class="btn-style btn-dark" onclick="setStyle('variant_dark.css')">
+                    🕹️ Cyber Neon<br><small>Dark Mode, High Contrast</small>
+                </button>
+                <button class="btn-style btn-elegant" onclick="setStyle('variant_elegant.css')">
+                    🤵 Elegant<br><small>Serif, Gold & Navy</small>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="iframe-container">
+        <div id="loader" class="loading-overlay">Loading...</div>
+        <iframe id="beds24-iframe" src=""></iframe>
+    </div>
+
+    <script>
+        // CONFIG
+        const PROP_ID = "255007"; // ID del usuario
+        const BASE_BEDS24 = "https://beds24.com/booking2.php";
+
+        // STATE
+        let currentCssFile = "";
+
+        function getNgrokUrl() {
+            let val = document.getElementById('ngrok-url').value.trim();
+            // Remove trailing slash if present
+            if (val.endsWith('/')) val = val.slice(0, -1);
+            return val;
+        }
+
+        function setStyle(filename) {
+            currentCssFile = filename;
+            updateUrl();
+        }
+
+        function updateUrl() {
+            const ngrokBase = getNgrokUrl();
+            const iframe = document.getElementById('beds24-iframe');
+            const status = document.getElementById('status-text');
+            const loader = document.getElementById('loader');
+
+            if (!ngrokBase || !ngrokBase.startsWith('https')) {
+                status.style.color = 'red';
+                status.innerText = "Please enter a valid HTTPS ngrok URL first.";
+                return;
+            }
+
+            status.style.color = 'green';
+            status.innerText = "Generating URL...";
+
+            // Build Params
+            const params = new URLSearchParams();
+            params.set('propid', PROP_ID);
+            params.set('referer', 'iframe-lab');
+
+            // Toggles
+            if (document.getElementById('chk-hideheader').checked) params.set('hideheader', 'window');
+            if (document.getElementById('chk-hidefooter').checked) params.set('hidefooter', 'window');
+
+            // CSS Injection logic
+            if (currentCssFile) {
+                // Construct absolute URL
+                const cacheBuster = Date.now();
+                // Append params to CSS URL for Node server dynamic injection
+                let cssQuery = `?v=${cacheBuster}`;
+                if (document.getElementById('chk-hideheader').checked) cssQuery += '&hideheader=true';
+                if (document.getElementById('chk-hidefooter').checked) cssQuery += '&hidefooter=true';
+
+                const cssAbsoluteUrl = `${ngrokBase}/tests/styles/${currentCssFile}${cssQuery}`;
+
+                // Add to params
+                params.set('cssfile', cssAbsoluteUrl);
+
+                // Update Debug Link
+                const debugHtml = `<a href="${cssAbsoluteUrl}" target="_blank" style="color: blue; text-decoration: underline; font-weight: bold;">[TEST CSS LINK]</a> <span style="font-size:0.8rem; color:#555;">(Click to verify Ngrok is serving the file)</span>`;
+                status.innerHTML = `Injecting: ${currentCssFile} <br> ${debugHtml}`;
+            } else {
+                status.innerText = "Loading Standard View (No Custom CSS)";
+            }
+
+            // Update Iframe
+            // NOTE: URLSearchParams automatically encodes values. 
+            // If we double encode, Beds24 might fail to decode it. 
+            // Let's revert the manual encodeURIComponent and trust params.toString() but VERIFY the output.
+
+            // Correction: params.set('cssfile', cssAbsoluteUrl) is safe because params.toString() will encode it.
+            // If we manually encoded it above, params.toString() triggers double encoding %253A.
+            // Reverting the previous manual encode to avoid double encoding issues.
+
+            // params set in block above
+
+            const finalUrl = `${BASE_BEDS24}?${params.toString()}`;
+            console.log("Loading:", finalUrl);
+
+            loader.style.display = 'flex';
+            iframe.style.opacity = '0.5';
+            iframe.src = finalUrl;
+
+            iframe.onload = () => {
+                loader.style.display = 'none';
+                iframe.style.opacity = '1';
+            };
+        }
+
+        // Init (Optional: Check if we can autodect url from query param for ease of use)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('ngrok')) {
+            document.getElementById('ngrok-url').value = urlParams.get('ngrok');
+            // Auto load first style
+            setStyle('variant_glass.css');
+        }
+
+    </script>
+</body>
+
+</html>
