@@ -39,9 +39,11 @@
 <body class="bg-color-sand text-color-ink font-sans antialiased selection:bg-color-earth selection:text-white">
 
     <!-- Global Floating Nav -->
-    <nav class="fixed z-50 w-full md:w-auto md:top-8 md:right-8 bottom-6 flex justify-center pointer-events-none">
+    <!-- Global Floating Nav -->
+    <!-- Desktop: Visible / Mobile: Hidden -->
+    <nav class="hidden md:flex fixed z-50 w-auto top-8 right-8 justify-center pointer-events-none">
         <div
-            class="pointer-events-auto h-fit glass-nav rounded-full px-8 py-3 flex flex-row gap-6 md:gap-8 items-center transition-all hover:bg-white/60">
+            class="pointer-events-auto h-fit glass-nav rounded-full px-8 py-3 flex flex-row gap-8 items-center transition-all hover:bg-white/60">
             <a href="index.html" class="font-serif font-bold text-lg text-color-ink">Inicio</a>
 
             <!-- Dropdown Item -->
@@ -71,6 +73,15 @@
             </button>
         </div>
     </nav>
+
+    <!-- Mobile Nav Trigger -->
+    <button onclick="toggleMobileMenu()" aria-label="Abrir Menú"
+        class="md:hidden fixed z-[60] top-6 right-6 glass-nav text-color-ink p-3 rounded-full hover:bg-white/60 transition-all shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+        </svg>
+    </button>
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu"
@@ -170,7 +181,7 @@
 
         <div class="max-w-4xl mx-auto relative z-10">
             <h1 class="text-6xl md:text-8xl font-serif text-color-ink mb-8 reveal-on-scroll">Hogar Mágico</h1>
-            
+
             <div class="space-y-8 reveal-on-scroll" style="transition-delay: 0.2s;">
                 <p class="text-xl md:text-2xl font-light italic text-color-ink/80 leading-relaxed">
                     "Hogar Mágico nace en la creencia de que la magia está en cada experiencia."
@@ -257,9 +268,13 @@
     <!-- Visual Gallery Section -->
     <section class="py-24 px-4 md:px-6 bg-color-sand relative overflow-hidden">
         <!-- Minimal Decor -->
-        <div class="absolute top-0 right-0 w-96 h-96 border border-color-earth/10 rounded-full translate-x-1/2 -translate-y-1/2"></div>
-        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] border border-color-sea/10 rounded-full -translate-x-1/3 translate-y-1/3"></div>
-        
+        <div
+            class="absolute top-0 right-0 w-96 h-96 border border-color-earth/10 rounded-full translate-x-1/2 -translate-y-1/2">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-[500px] h-[500px] border border-color-sea/10 rounded-full -translate-x-1/3 translate-y-1/3">
+        </div>
+
         <div class="max-w-7xl mx-auto relative z-10">
             <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 text-color-ink reveal-on-scroll">
                 Instantes de Magia
@@ -267,38 +282,55 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
                 <!-- Item 1: Large -->
-                <div class="md:col-span-2 md:row-span-2 relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500">
+                <div
+                    class="md:col-span-2 md:row-span-2 relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500">
                     <div class="w-full h-full rounded-2xl overflow-hidden relative">
-                        <img src="images/home-gallery/_AFD3470.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" alt="Hogar Magico Detalle">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <img src="images/home-gallery/_AFD3470.jpg"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy" alt="Hogar Magico Detalle">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
                     </div>
                 </div>
 
                 <!-- Item 2 -->
-                <div class="relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500" style="transition-delay: 0.1s;">
+                <div class="relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500"
+                    style="transition-delay: 0.1s;">
                     <div class="w-full h-full rounded-2xl overflow-hidden relative">
-                        <img src="images/home-gallery/_AFD3437.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" alt="Hogar Magico Detalle">
+                        <img src="images/home-gallery/_AFD3437.jpg"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy" alt="Hogar Magico Detalle">
                     </div>
                 </div>
 
                 <!-- Item 3 -->
-                <div class="relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500" style="transition-delay: 0.2s;">
+                <div class="relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500"
+                    style="transition-delay: 0.2s;">
                     <div class="w-full h-full rounded-2xl overflow-hidden relative">
-                        <img src="images/home-gallery/_AFD3545.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" alt="Hogar Magico Detalle">
+                        <img src="images/home-gallery/_AFD3545.jpg"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy" alt="Hogar Magico Detalle">
                     </div>
                 </div>
 
                 <!-- Item 4: Wide -->
-                <div class="md:col-span-2 relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500" style="transition-delay: 0.3s;">
+                <div class="md:col-span-2 relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500"
+                    style="transition-delay: 0.3s;">
                     <div class="w-full h-full rounded-2xl overflow-hidden relative">
-                        <img src="images/home-gallery/_AFD3623.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" alt="Hogar Magico Detalle">
+                        <img src="images/home-gallery/_AFD3623.jpg"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy" alt="Hogar Magico Detalle">
                     </div>
                 </div>
 
-                 <!-- Item 5 -->
-                 <div class="relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500" style="transition-delay: 0.4s;">
+                <!-- Item 5 -->
+                <div class="relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500"
+                    style="transition-delay: 0.4s;">
                     <div class="w-full h-full rounded-2xl overflow-hidden relative">
-                        <img src="images/home-gallery/_AFD8265.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" alt="Hogar Magico Detalle">
+                        <img src="images/home-gallery/_AFD8265.jpg"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy" alt="Hogar Magico Detalle">
                     </div>
                 </div>
             </div>
@@ -310,8 +342,11 @@
         <div class="absolute inset-0 bg-noise opacity-10"></div>
         <!-- Organic shape divider top -->
         <div class="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
-            <svg class="relative block w-[calc(100%+1.3px)] h-[60px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C57.85,115.39,115.27,113.69,172,96.31,235,76.9,281.43,63.91,321.39,56.44Z" class="fill-color-sand"></path>
+            <svg class="relative block w-[calc(100%+1.3px)] h-[60px]" data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C57.85,115.39,115.27,113.69,172,96.31,235,76.9,281.43,63.91,321.39,56.44Z"
+                    class="fill-color-sand"></path>
             </svg>
         </div>
 
@@ -319,26 +354,39 @@
             <div class="text-center mb-16 reveal-on-scroll">
                 <h2 class="text-4xl md:text-5xl font-serif mb-6">Compromiso con la Tierra</h2>
                 <p class="text-lg opacity-80 font-light max-w-2xl mx-auto">
-                    Nuestro concepto es ser un hogar eco-sustentable, honrando técnicas ancestrales y cuidando el futuro.
+                    Nuestro concepto es ser un hogar eco-sustentable, honrando técnicas ancestrales y cuidando el
+                    futuro.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <!-- Item 1 -->
-                <div class="p-8 border border-white/10 rounded-3xl hover:bg-white/5 transition-colors reveal-on-scroll text-center group">
-                    <div class="w-16 h-16 bg-color-sea/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                        <svg class="w-8 h-8 text-color-sea" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <div
+                    class="p-8 border border-white/10 rounded-3xl hover:bg-white/5 transition-colors reveal-on-scroll text-center group">
+                    <div
+                        class="w-16 h-16 bg-color-sea/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-color-sea" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                            </path>
+                        </svg>
                     </div>
                     <h3 class="text-xl font-serif mb-3">Construcción Vernácula</h3>
                     <p class="text-sm opacity-70 leading-relaxed">
-                        Rescatamos técnicas como el <strong>barro, piedra y totora</strong>. Revivimos el "techo cuyano", una tradición nortina desaparecida.
+                        Rescatamos técnicas como el <strong>barro, piedra y totora</strong>. Revivimos el "techo
+                        cuyano", una tradición nortina desaparecida.
                     </p>
                 </div>
 
                 <!-- Item 2 -->
-                <div class="p-8 border border-white/10 rounded-3xl hover:bg-white/5 transition-colors reveal-on-scroll text-center group" style="transition-delay: 0.1s;">
-                    <div class="w-16 h-16 bg-color-spirit/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                        <svg class="w-8 h-8 text-color-spirit" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                <div class="p-8 border border-white/10 rounded-3xl hover:bg-white/5 transition-colors reveal-on-scroll text-center group"
+                    style="transition-delay: 0.1s;">
+                    <div
+                        class="w-16 h-16 bg-color-spirit/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-color-spirit" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
                     </div>
                     <h3 class="text-xl font-serif mb-3">Energía Consciente</h3>
                     <p class="text-sm opacity-70 leading-relaxed">
@@ -347,13 +395,20 @@
                 </div>
 
                 <!-- Item 3 -->
-                <div class="p-8 border border-white/10 rounded-3xl hover:bg-white/5 transition-colors reveal-on-scroll text-center group" style="transition-delay: 0.2s;">
-                    <div class="w-16 h-16 bg-color-earth/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                       <svg class="w-8 h-8 text-color-earth" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                <div class="p-8 border border-white/10 rounded-3xl hover:bg-white/5 transition-colors reveal-on-scroll text-center group"
+                    style="transition-delay: 0.2s;">
+                    <div
+                        class="w-16 h-16 bg-color-earth/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-color-earth" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                            </path>
+                        </svg>
                     </div>
                     <h3 class="text-xl font-serif mb-3">Ciclo Vital</h3>
                     <p class="text-sm opacity-70 leading-relaxed">
-                        Reutilizamos aguas grises para riego y compostamos para la tierra. Muebles y ventanas antiguas tienen aquí una segunda vida.
+                        Reutilizamos aguas grises para riego y compostamos para la tierra. Muebles y ventanas antiguas
+                        tienen aquí una segunda vida.
                     </p>
                 </div>
             </div>
