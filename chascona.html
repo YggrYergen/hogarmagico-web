@@ -93,21 +93,35 @@
             class="mt-12 text-sm border border-white/30 px-10 py-4 rounded-full hover:bg-white/10 transition-colors uppercase tracking-[0.2em]">Cerrar</button>
     </div>
 
-    <main class="pt-24 md:pt-32 px-6 md:px-20 max-w-7xl mx-auto pb-20">
+    <main>
         <!-- Hero Section -->
-        <header class="relative mb-24 reveal-on-scroll">
-            <div class="arch-mask overflow-hidden h-[500px] md:h-[700px] shadow-2xl relative">
-                <img src="images/chascona-hero.jpg"
-                    srcset="images/chascona-hero_small.jpg 600w, images/chascona-hero_medium.jpg 1200w, images/chascona-hero.jpg 2000w"
-                    sizes="100vw" alt="Casa La Chascona Exterior" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-color-ink/60 to-transparent"></div>
-                <div class="absolute bottom-12 left-12 text-white">
-                    <h1 class="text-5xl md:text-7xl font-serif mb-4">Casa La Chascona</h1>
-                    <p class="text-xl md:text-2xl font-light italic">"Tu refugio de barro y madera."</p>
-                </div>
+        <header
+            class="relative w-full h-[80vh] flex items-center justify-center text-center px-6 overflow-hidden bg-gradient-to-br from-color-ink to-color-sea">
+            <img src="images/chascona-hero.jpg" id="hero-img"
+                srcset="images/chascona-hero_small.jpg 600w, images/chascona-hero_medium.jpg 1200w, images/chascona-hero.jpg 2000w"
+                sizes="100vw"
+                class="absolute inset-x-0 -top-20 -bottom-20 w-full h-[120%] object-cover mix-blend-multiply opacity-60 transition-all duration-[2000ms]"
+                data-speed="0.2">
+
+            <div class="relative z-10 text-white max-w-4xl">
+                <h1 class="text-6xl md:text-8xl font-serif mb-4 drop-shadow-lg reveal-on-scroll">Casa La Chascona</h1>
+                <p class="text-xl md:text-3xl font-light italic mb-8 reveal-on-scroll">"Tu refugio de barro y madera."</p>
+                <a href="#reservas"
+                    class="btn-organic inline-block bg-white/20 backdrop-blur-md border border-white/40 text-white px-10 py-3 rounded-full hover:bg-white hover:text-color-sea transition-all duration-300 reveal-on-scroll">Desconectar</a>
+            </div>
+
+            <div class="absolute bottom-0 left-0 w-full leading-none z-20 parallax-item transition-all duration-[2000ms]"
+                data-speed="0.05">
+                <svg id="hero-divider"
+                    class="block w-full h-24 md:h-32 text-color-sand transition-colors duration-[2000ms]"
+                    viewBox="0 0 1200 120" preserveAspectRatio="none" fill="currentColor">
+                    <path d="M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,120 L0,120 Z"
+                        fill="currentColor"></path>
+                </svg>
             </div>
         </header>
 
+        <div class="pt-24 md:pt-32 px-6 md:px-20 max-w-7xl mx-auto pb-20">
         <!-- Product Narrative Section -->
         <section class="grid md:grid-cols-2 gap-20 items-start mb-32">
             <div class="reveal-on-scroll">
@@ -120,10 +134,6 @@
                         radical.</p>
                 </div>
                 <div class="mt-12 flex gap-8 items-center border-t border-color-earth/20 pt-12">
-                    <div>
-                        <span class="block text-3xl font-serif text-color-sea">$120.000</span>
-                        <span class="text-sm uppercase tracking-widest opacity-60">Por noche</span>
-                    </div>
                     <a href="https://beds24.com/book-hogarmagicochascona"
                         class="bg-color-ink text-white px-10 py-4 rounded-full hover:bg-color-sea transition-all duration-300 shadow-lg hover:shadow-sea/20">Reservar
                         Ahora</a>
@@ -307,6 +317,7 @@
             </div>
         </section>
 
+        </div>
     </main>
 
     <!-- Reviews Section -->
