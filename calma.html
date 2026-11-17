@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap"></noscript>
-    <link rel="stylesheet" href="css/utilities.css">
     <link rel="stylesheet" href="css/styles.css">
     <style>
         /* CSS Stars for Night Mode */
@@ -28,6 +27,24 @@
             background: white;
             border-radius: 50%;
             animation: twinkle 2s infinite ease-in-out;
+            animation-play-state: paused;
+        }
+
+        /* Twinkle only runs while its container is on screen (class toggled by IntersectionObserver),
+           in day and night mode alike. */
+        .stars-active .star {
+            animation-play-state: running;
+        }
+
+        .stars-paused .star {
+            animation-play-state: paused !important;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .star {
+                animation: none;
+                opacity: 0.7;
+            }
         }
 
         @keyframes twinkle {
@@ -54,6 +71,7 @@
         }
     </style>
     <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="css/utilities.css">
     <script src="js/booking.js" defer></script>
 </head>
 
@@ -815,7 +833,9 @@
     <script>
         function generateStars(containerId, count, progressive = false) {
             const container = document.getElementById(containerId);
-            if (!container) return;
+            if (!container || container.dataset.starsReady) return;
+            container.dataset.starsReady = '1';
+            const fragment = document.createDocumentFragment();
             for (let i = 0; i < count; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
@@ -825,15 +845,83 @@
                 star.style.width = (0.5 + Math.random() * 1.5) + 'px';
                 star.style.height = star.style.width;
                 star.style.animationDelay = Math.random() * 3 + 's';
-                container.appendChild(star);
+                fragment.appendChild(star);
             }
+            container.appendChild(fragment);
         }
 
-        window.addEventListener('load', () => {
-            generateStars('hero-stars', 100, true);
-            generateStars('wellness-stars', 80, false);
-            generateStars('stars-bg', 60, false);
+        // The three star containers are visible in day and night mode (opacity-100), as in the original.
+        // Each one is populated once, when it gets near the viewport, and its twinkle animation runs only
+        // while it is on screen (.stars-active). Hidden tab / reduced motion are handled in CSS and below.
+        const STAR_FIELDS = [
+            { id: 'hero-stars', count: 100, progressive: true },
+            { id: 'wellness-stars', count: 80, progressive: false },
+            { id: 'stars-bg', count: 60, progressive: false }
+        ];
+        document.documentElement.classList.toggle('stars-paused', document.hidden);
+
+        (function initStarFields() {
+            const fields = STAR_FIELDS
+                .map(f => ({ ...f, el: document.getElementById(f.id) }))
+                .filter(f => f.el);
+            const byEl = new Map(fields.map(f => [f.el, f]));
+
+            if (!('IntersectionObserver' in window)) {
+                // No observer: equivalent initial behaviour, everything generated and animated up front.
+                fields.forEach(f => {
+                    generateStars(f.id, f.count, f.progressive);
+                    f.el.classList.add('stars-active');
+                });
+                return;
+            }
+
+            // Populate once, shortly before the container scrolls into view.
+            const proximityObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const f = byEl.get(entry.target);
+                    generateStars(f.id, f.count, f.progressive);
+                    proximityObserver.unobserve(entry.target);
+                });
+            }, { rootMargin: '300px 0px' });
+
+            // Animate only while visible.
+            const visibilityObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    entry.target.classList.toggle('stars-active', entry.isIntersecting);
+                });
+            });
+
+            fields.forEach(f => {
+                proximityObserver.observe(f.el);
+                visibilityObserver.observe(f.el);
+            });
+        })();
+
+        // Shooting-star timer: only while night is on, tab visible and motion allowed; never duplicated.
+        const calmaMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        function syncShootingStars() {
+            const nightOn = document.getElementById('night-section').classList.contains('night-active');
+            const shouldRun = nightOn && !document.hidden && !calmaMotionQuery.matches;
+            if (shouldRun && !window.shootingStarInterval) {
+                window.shootingStarInterval = setInterval(() => {
+                    if (window.createShootingStar) {
+                        // createShootingStar skips containers that are off screen.
+                        window.createShootingStar('hero-stars', true);
+                        window.createShootingStar('stars-bg');
+                        if (Math.random() > 0.5) window.createShootingStar('wellness-stars');
+                    }
+                }, 1500);
+            } else if (!shouldRun && window.shootingStarInterval) {
+                clearInterval(window.shootingStarInterval);
+                window.shootingStarInterval = null;
+            }
+        }
+        document.addEventListener('visibilitychange', () => {
+            document.documentElement.classList.toggle('stars-paused', document.hidden);
+            syncShootingStars();
         });
+        calmaMotionQuery.addEventListener?.('change', syncShootingStars);
 
         function toggleNightMode() {
             const nightSection = document.getElementById('night-section');
@@ -858,13 +946,6 @@
                 wellnessTitles.forEach(h2 => {
                     if (h2.classList.contains('text-color-ink')) h2.classList.replace('text-color-ink', 'text-color-sand');
                 });
-                window.shootingStarInterval = setInterval(() => {
-                    if (window.createShootingStar) {
-                        window.createShootingStar('stars-bg');
-                        if (Math.random() > 0.5) window.createShootingStar('wellness-stars');
-                        window.createShootingStar('hero-stars', true);
-                    }
-                }, 1500);
             } else {
                 btnText.textContent = "Apagar Luces";
                 nightSection.style.backgroundColor = "";
@@ -875,8 +956,8 @@
                 wellnessTitles.forEach(h2 => {
                     if (h2.classList.contains('text-color-sand')) h2.classList.replace('text-color-sand', 'text-color-ink');
                 });
-                clearInterval(window.shootingStarInterval);
             }
+            syncShootingStars();
         }
     </script>
 </body>

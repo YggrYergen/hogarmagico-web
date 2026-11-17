@@ -66,25 +66,83 @@ function startImageRotation(selector, interval) {
     const images = document.querySelectorAll(selector);
     if (images.length <= 1) return;
 
+    const lead = Math.min(2000, interval / 2); // how early the next photo starts loading
     let currentIndex = 0;
+    let nextIndex = 1;
     let timer = null;
+    let running = false;
+    let epoch = 0; // bumped on pause so in-flight loads never trigger a transition
+    const loads = new Map();
     const visibleContainers = new Set();
     const hasObserver = 'IntersectionObserver' in window;
 
-    const step = () => {
+    // Resolves true once the image is loaded and decoded, false on error. Slides marked with
+    // data-src/data-srcset only start downloading here, never at page load.
+    const load = (img) => {
+        if (!loads.has(img)) {
+            if (img.dataset.src) {
+                if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+                img.src = img.dataset.src;
+                delete img.dataset.srcset;
+                delete img.dataset.src;
+            }
+            loads.set(img, typeof img.decode === 'function'
+                ? img.decode().then(() => true, () => false)
+                : new Promise(resolve => {
+                    if (img.complete) return resolve(img.naturalWidth > 0);
+                    img.addEventListener('load', () => resolve(true), { once: true });
+                    img.addEventListener('error', () => resolve(false), { once: true });
+                }));
+        }
+        return loads.get(img);
+    };
+
+    const swap = (index) => {
         images[currentIndex].classList.remove('opacity-100');
         images[currentIndex].classList.add('opacity-0', 'pointer-events-none');
 
-        currentIndex = (currentIndex + 1) % images.length;
+        currentIndex = index;
 
         images[currentIndex].classList.remove('opacity-0', 'pointer-events-none');
         images[currentIndex].classList.add('opacity-100');
     };
 
+    // One cycle: preload the next photo shortly before it is due, then swap only if it is ready.
+    // On error the current slide stays visible and the following candidate is tried next cycle.
+    const cycle = () => {
+        const myEpoch = epoch;
+        const dueAt = performance.now() + interval;
+        timer = setTimeout(() => {
+            timer = null;
+            const candidate = nextIndex;
+            load(images[candidate]).then(ok => {
+                if (myEpoch !== epoch) return;
+                timer = setTimeout(() => {
+                    timer = null;
+                    if (ok) {
+                        swap(candidate);
+                        nextIndex = (candidate + 1) % images.length;
+                    } else {
+                        nextIndex = (candidate + 1) % images.length;
+                        if (nextIndex === currentIndex) nextIndex = (nextIndex + 1) % images.length;
+                    }
+                    cycle();
+                }, Math.max(0, dueAt - performance.now()));
+            });
+        }, interval - lead);
+    };
+
     const sync = () => {
         const shouldRun = !document.hidden && !reducedMotionQuery.matches && (!hasObserver || visibleContainers.size > 0);
-        if (shouldRun && timer === null) timer = setInterval(step, interval);
-        else if (!shouldRun && timer !== null) { clearInterval(timer); timer = null; }
+        if (shouldRun && !running) {
+            running = true;
+            cycle();
+        } else if (!shouldRun && running) {
+            running = false;
+            epoch++;
+            clearTimeout(timer);
+            timer = null;
+        }
     };
 
     document.addEventListener('visibilitychange', sync);
