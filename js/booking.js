@@ -47,6 +47,20 @@
     const calendarStatus = find('[data-calendar-status]');
     const retry = find('[data-action="retry"]');
 
+    function showDirectBooking() {
+        const url = new URL(`https://beds24.com/${house.slug}`);
+        url.searchParams.set('lang', 'es');
+        url.searchParams.set('numadult', String(guests));
+        if (checkin) url.searchParams.set('checkin_hide', checkin);
+        if (checkin && checkout > checkin) {
+            url.searchParams.set('checkout_hide', checkout);
+            url.searchParams.set('numnight', String((parse(checkout) - parse(checkin)) / 86400000));
+        }
+        fallback.href = url.href;
+        fallback.textContent = 'Consultar en Beds24 con mi selección →';
+        fallback.hidden = false;
+    }
+
     async function lookup(values, signal) {
         const params = new URLSearchParams({ house: root.dataset.house, guests: String(guests), ...values });
         const response = await fetch(`/api/booking?${params}`, { signal, cache: 'no-store' });
@@ -69,7 +83,7 @@
 
     function renderCalendar() {
         const selectingExit = checkin && !checkout;
-        find('[data-selection]').textContent = selectingExit ? 'Ahora, selecciona tu salida' : 'Selecciona tu llegada';
+        find('[data-selection]').textContent = checkout && checkin ? 'Fechas de tu estadía' : selectingExit ? 'Ahora, selecciona tu salida' : 'Selecciona tu llegada';
         find('[data-action="previous"]').disabled = month <= parse(today.slice(0, 7) + '-01');
         find('[data-action="next"]').disabled = month >= new Date(parse(today).getUTCFullYear() + 2, parse(today).getUTCMonth(), 1);
         const months = [];
@@ -115,7 +129,7 @@
             if (controller.signal.aborted) return;
             calendarStatus.textContent = 'No pudimos cargar el calendario. Puedes ingresar las fechas arriba.';
             retry.hidden = false;
-            fallback.hidden = false;
+            showDirectBooking();
         }
     }
 
@@ -154,7 +168,7 @@
             quoteStatus.textContent = 'La consulta no respondió. Cambia las fechas o vuelve a consultar.';
             reserve.textContent = 'Reintentar consulta';
             reserve.disabled = false;
-            fallback.hidden = false;
+            showDirectBooking();
         }
     }
 
@@ -217,7 +231,7 @@
                 quoteStatus.textContent = 'No pudimos verificar la reserva. Intenta nuevamente.';
                 reserve.textContent = 'Volver a intentar';
                 reserve.disabled = false;
-                fallback.hidden = false;
+                showDirectBooking();
             }
         }
     });

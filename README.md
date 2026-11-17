@@ -15,10 +15,10 @@ Este proyecto usa páginas estáticas y una ruta de servidor en Cloudflare Pages
 
 ## Guías para huéspedes
 
-- Cada casa tiene una guía propia en `/guias/chascona.html`, `/guias/lamar.html` y `/guias/calma.html`. Estas rutas serán los destinos de los QR cuando se confirme el dominio de publicación.
+- Los tres QR están en `guias/qr-chascona.png`, `guias/qr-lamar.png` y `guias/qr-calma.png`. Abren la página de la casa en `https://hogarmagico-web.pages.dev/guias/` seguida del nombre `chascona`, `lamar` o `calma`.
 - Decisión de Tomás del 17 de noviembre de 2026: acceso directo, sin clave por ahora.
 - Se podrá añadir protección con clave si la dueña lo requiere. Esa protección requerirá una implementación posterior.
-- Falta reunir y validar las instrucciones, datos de Wi-Fi y contactos específicos de cada casa.
+- Las guías están completas con ejemplos identificados de Wi-Fi, parlantes, llegada, salida y teléfonos de actividades. El WhatsApp del anfitrión es el contacto público del sitio.
 
 ## Reservas y desarrollo local
 
@@ -30,4 +30,4 @@ El adaptador consulta el HTML y el endpoint de cotización que utiliza la págin
 
 Identificadores comprobados el 17 de noviembre de 2026: La Chascona `248224 / 522714`, La Mar `255007 / 535728`, La Calma `248225 / 522715` (propiedad / habitación).
 
-Para publicar la consulta se requiere desplegar con soporte de Pages Functions, mediante la integración Git de Cloudflare o Wrangler. La ejecución en Cloudflare y el pago completo quedan pendientes de verificación en el entorno publicado.
+La integración Git de Cloudflare Pages despliega la rama principal con Pages Functions. Para comprobar el recorrido en producción, selecciona una estadía disponible en una casa y continúa hasta el resumen en Beds24.

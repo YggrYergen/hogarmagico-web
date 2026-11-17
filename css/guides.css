@@ -22,6 +22,11 @@ h3 { font: 600 16px 'Mulish', sans-serif; margin: 0 0 6px; }
 .guide-card { border: 1px solid #e0e3d7; border-radius: 15px; background: #fffef9; padding: 23px; margin-bottom: 12px; }
 .guide-card p { margin: 0 0 12px; color: #677268; font-size: 13px; }
 .guide-card p:last-child { margin-bottom: 0; }
+.guide-card ol { padding-left: 20px; margin-bottom: 0; font-size: 14px; }
+.guide-card li + li { margin-top: 7px; }
+.guide-card code { font-size: 1em; color: #285b50; }
+.guide-activities .guide-contact { font-size: 12px; color: #365447; }
+.guide-activities + .guide-link { display: inline-block; margin-top: 16px; }
 .guide-link { color: #276b60; font-size: 12px; font-weight: 600; text-underline-offset: 4px; }
 details { background: #fffef9; border: 1px solid #e0e3d7; border-radius: 13px; margin-bottom: 10px; }
 summary { cursor: pointer; padding: 18px 22px; font-weight: 600; font-size: 13px; }

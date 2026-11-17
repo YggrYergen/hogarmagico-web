@@ -12,7 +12,10 @@ test('public source contract and reservation safeguards', async t => {
     const original = globalThis.fetch;
     try {
         await t.test('uses the correct property and passes the selected dates to checkout', async () => {
-            globalThis.fetch = async () => Response.json([valid]);
+            globalThis.fetch = async (_url, options) => {
+                assert.equal(options.redirect, 'manual', 'Cloudflare subrequests must return redirects to the adapter for inspection');
+                return Response.json([valid]);
+            };
             const result = await getBookingData(query);
             assert.equal(result.body.available, true);
             assert.equal(result.body.total, 300000);
@@ -20,6 +23,12 @@ test('public source contract and reservation safeguards', async t => {
             assert.equal(checkout.searchParams.get('propid'), '248224');
             assert.equal(checkout.searchParams.get('checkin_hide'), start);
             assert.equal(checkout.searchParams.get('br1-522714'), 'Book');
+        });
+        await t.test('does not continue with a price if the upstream endpoint redirects', async () => {
+            globalThis.fetch = async () => Response.redirect('https://beds24.com/', 302);
+            const result = await getBookingData(query);
+            assert.equal(result.status, 502);
+            assert.equal(result.body.checkoutURL, undefined);
         });
         await t.test('does not sell a positive quote carrying an availability warning', async () => {
             globalThis.fetch = async () => Response.json([{ ...valid, warn: 'No disponible' }]);
