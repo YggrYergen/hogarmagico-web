@@ -76,6 +76,8 @@
             color: #FDFCF8;
         }
     </style>
+    <link rel="stylesheet" href="css/booking.css">
+    <script src="js/booking.js" defer></script>
 </head>
 
 <body class="bg-color-sand text-color-ink font-sans antialiased selection:bg-color-spirit selection:text-white">
@@ -131,6 +133,7 @@
         <a href="chascona.html" class="mobile-nav-btn font-serif">La Chascona</a>
         <a href="lamar.html" class="mobile-nav-btn font-serif">La Mar</a>
         <a href="calma.html" class="mobile-nav-btn font-serif">Cochiguaz</a>
+        <a href="contacto.html" class="mobile-nav-btn font-serif">Contacto</a>
         <button onclick="window.toggleMobileMenu()"
             class="mt-12 text-sm border border-white/30 px-10 py-4 rounded-full hover:bg-white/10 transition-colors uppercase tracking-[0.2em]">Cerrar</button>
     </div>
@@ -151,8 +154,7 @@
                 <h1 class="text-6xl md:text-8xl font-serif mb-4 drop-shadow-lg reveal-on-scroll">Casa La Calma</h1>
                 <p class="text-xl md:text-3xl font-light italic mb-8 reveal-on-scroll">"Alma Zen en el Valle de Elqui."
                 </p>
-                <a href="https://beds24.com/book-cochiguaz"
-                    class="btn-organic inline-block bg-white/20 backdrop-blur-md border border-white/40 text-white px-10 py-3 rounded-full hover:bg-white hover:text-color-spirit transition-all duration-300 reveal-on-scroll">Desconectar</a>
+                <a href="#reservas" class="btn-organic inline-block bg-white/20 backdrop-blur-md border border-white/40 text-white px-10 py-3 rounded-full hover:bg-white hover:text-color-spirit transition-all duration-300 reveal-on-scroll">Desconectar</a>
             </div>
 
             <div class="absolute bottom-0 left-0 w-full leading-none z-20 parallax-item transition-all duration-[2000ms]"
@@ -728,30 +730,7 @@
         </section>
 
         <!-- Booking Section -->
-        <section id="reservas" class="py-24 relative bg-color-sand transition-colors duration-[2000ms]">
-            <div class="max-w-4xl mx-auto px-6">
-                <div class="text-center mb-16 reveal-on-scroll">
-                    <span class="text-color-spirit font-bold uppercase tracking-widest text-sm mb-4 block">Reserva en El
-                        Valle</span>
-                    <h2 class="text-4xl md:text-5xl font-serif text-color-ink wellness-title">Tu Momento de Calma</h2>
-                </div>
-
-                <!-- Iframe Container -->
-                <div class="relative bg-white/50 backdrop-blur-sm rounded-[3rem] p-4 md:p-8 shadow-2xl border border-white/60 reveal-on-scroll"
-                    style="transition-delay: 0.2s;">
-                    <!-- Blob Decoration -->
-                    <div class="absolute -top-10 -left-10 w-32 h-32 bg-color-spirit/10 blob-3 -z-10"></div>
-                    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-color-sunset/20 blob-2 -z-10"></div>
-
-                    <!-- Beds24 Iframe -->
-                    <iframe
-                        src="https://beds24.com/booking2.php?propid=255007&hideheader=window&hidefooter=window&lang=es&cssfile=https://hogarmagico-preview.pages.dev/tests/custom_beds24.css"
-                        width="100%" height="1200" style="border:none; border-radius: 2rem; overflow: hidden;"
-                        scrolling="auto" allowtransparency="true">
-                    </iframe>
-                </div>
-            </div>
-        </section>
+        <section id="reservas" class="hm-booking" data-house="calma" aria-label="Reservar tu estadía"><noscript><p>Activa JavaScript para consultar el calendario o <a href="https://beds24.com/book-cochiguaz">abre la página de reservas</a>.</p></noscript></section>
 
         <!-- Gallery Section -->
         <section class="max-w-7xl mx-auto px-6 mb-32">
