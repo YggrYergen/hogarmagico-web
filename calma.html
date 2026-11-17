@@ -6,34 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casa La Calma | Hogar Mágico</title>
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <!-- Tailwind via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'color-sand': '#FDFCF8',
-                        'color-ink': '#264653',
-                        'color-sea': '#2A9D8F',
-                        'color-spirit': '#9B5DE5',
-                        'color-night': '#2E294E',
-                        'color-earth': '#CCAEA3',
-                        'color-adobe': '#CCAEA3',
-                        'color-adobe-light': '#E6D5CC',
-                        'color-sunset': '#D38E6E',
-                    },
-                    fontFamily: {
-                        serif: ['Cormorant Garamond', 'serif'],
-                        sans: ['Mulish', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap"></noscript>
+    <link rel="stylesheet" href="css/utilities.css">
     <link rel="stylesheet" href="css/styles.css">
     <style>
         /* CSS Stars for Night Mode */
@@ -144,11 +121,16 @@
         <header
             class="relative w-full h-[80vh] flex items-center justify-center text-center px-6 overflow-hidden bg-gradient-to-br from-color-sunset to-color-spirit">
             <div id="hero-stars" class="stars-container opacity-100"></div>
-            <img src="images/calma-hero.jpg" id="hero-img"
-                srcset="images/calma-hero_small.jpg 600w, images/calma-hero_medium.jpg 1200w, images/calma-hero.jpg 2000w"
-                sizes="100vw"
-                class="absolute inset-x-0 -top-20 -bottom-20 w-full h-[120%] object-cover mix-blend-multiply opacity-60 transition-all duration-[2000ms]"
-                data-speed="0.2">
+            <img src="images/calma-hero-960.webp"
+                 srcset="images/calma-hero-480.webp 480w, images/calma-hero-960.webp 960w, images/calma-hero-1920.webp 1920w"
+                 sizes="100vw"
+                 width="960"
+                 height="1440"
+                 id="hero-img"
+                 class="absolute inset-x-0 -top-20 -bottom-20 w-full h-[120%] object-cover mix-blend-multiply opacity-60 transition-all duration-[2000ms]"
+                 data-speed="0.2"
+                 loading="eager"
+                 fetchpriority="high">
 
             <div class="relative z-10 text-white max-w-4xl">
                 <h1 class="text-6xl md:text-8xl font-serif mb-4 drop-shadow-lg reveal-on-scroll">Casa La Calma</h1>
@@ -177,10 +159,14 @@
                 <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 reveal-on-scroll">
                     <div class="w-full md:w-1/2">
                         <div class="blob-shape overflow-hidden shadow-xl hover:shadow-2xl h-80 md:h-96">
-                            <img src="images/calma-piscina.jpg"
-                                srcset="images/calma-piscina_small.jpg 600w, images/calma-piscina_medium.jpg 1200w"
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
+                            <img src="images/calma-piscina-960.webp"
+                                 srcset="images/calma-piscina-480.webp 480w, images/calma-piscina-960.webp 960w, images/calma-piscina-1920.webp 1920w"
+                                 sizes="(max-width: 767px) 100vw, (max-width: 1280px) 45vw, 560px"
+                                 width="960"
+                                 height="640"
+                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
                     </div>
                     <div class="w-full md:w-1/2 text-center md:text-left transition-all duration-[2000ms]">
@@ -196,10 +182,14 @@
                     <div class="w-full md:w-1/2">
                         <div class="blob-shape overflow-hidden shadow-xl hover:shadow-2xl h-80 md:h-96"
                             style="border-radius: 40% 60% 70% 30% / 50% 30% 70% 50%;">
-                            <img src="images/calma-tinaja.jpg"
-                                srcset="images/calma-tinaja_small.jpg 600w, images/calma-tinaja_medium.jpg 1200w"
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
+                            <img src="images/calma-tinaja-960.webp"
+                                 srcset="images/calma-tinaja-480.webp 480w, images/calma-tinaja-960.webp 960w, images/calma-tinaja-1920.webp 1920w"
+                                 sizes="(max-width: 767px) 100vw, (max-width: 1280px) 45vw, 560px"
+                                 width="960"
+                                 height="1440"
+                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
                     </div>
                     <div class="w-full md:w-1/2 text-center md:text-right transition-all duration-[2000ms]">
@@ -217,10 +207,14 @@
                 <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20 reveal-on-scroll">
                     <div class="w-full md:w-1/2">
                         <div class="blob-shape overflow-hidden shadow-xl hover:shadow-2xl h-80 md:h-96">
-                            <img src="images/calma-jardin.jpg"
-                                srcset="images/calma-jardin_small.jpg 600w, images/calma-jardin_medium.jpg 1200w"
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
+                            <img src="images/calma-jardin-960.webp"
+                                 srcset="images/calma-jardin-480.webp 480w, images/calma-jardin-960.webp 960w, images/calma-jardin-1920.webp 1920w"
+                                 sizes="(max-width: 767px) 100vw, (max-width: 1280px) 45vw, 560px"
+                                 width="960"
+                                 height="1440"
+                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
                     </div>
                     <div class="w-full md:w-1/2 text-center md:text-left transition-all duration-[2000ms]">
@@ -392,10 +386,12 @@
                             igual. La tinaja bajo las estrellas es una experiencia religiosa."</p>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-spirit/20 blob-1 overflow-hidden shrink-0">
-                                <img src="images/calma-tinaja.jpg"
-                                    srcset="images/calma-tinaja_small.jpg 600w, images/calma-tinaja_medium.jpg 1200w"
-                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                    loading="lazy">
+                                <img src="images/calma-tinaja-480.webp"
+                                     width="480"
+                                     height="720"
+                                     class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                     loading="lazy"
+                                     decoding="async">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg wellness-title">Camila O.</h4>
@@ -432,10 +428,12 @@
                             pero cálido. Se nota el amor en cada detalle de la casa."</p>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-sunset/20 blob-2 overflow-hidden shrink-0">
-                                <img src="images/calma-piscina.jpg"
-                                    srcset="images/calma-piscina_small.jpg 600w, images/calma-piscina_medium.jpg 1200w"
-                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                    loading="lazy">
+                                <img src="images/calma-piscina-480.webp"
+                                     width="480"
+                                     height="320"
+                                     class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                     loading="lazy"
+                                     decoding="async">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg wellness-title">Roberto M.</h4>
@@ -472,10 +470,12 @@
                             renovados. Gracias por compartir este rincón del paraíso."</p>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-ink/20 blob-3 overflow-hidden shrink-0">
-                                <img src="images/calma-jardin.jpg"
-                                    srcset="images/calma-jardin_small.jpg 600w, images/calma-jardin_medium.jpg 1200w"
-                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                    loading="lazy">
+                                <img src="images/calma-jardin-480.webp"
+                                     width="480"
+                                     height="720"
+                                     class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                     loading="lazy"
+                                     decoding="async">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg wellness-title">Isabel & Juan</h4>
@@ -513,10 +513,12 @@
                             igual. La tinaja bajo las estrellas es una experiencia religiosa."</p>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-spirit/20 blob-1 overflow-hidden shrink-0">
-                                <img src="images/calma-tinaja.jpg"
-                                    srcset="images/calma-tinaja_small.jpg 600w, images/calma-tinaja_medium.jpg 1200w"
-                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                    loading="lazy">
+                                <img src="images/calma-tinaja-480.webp"
+                                     width="480"
+                                     height="720"
+                                     class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                     loading="lazy"
+                                     decoding="async">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg wellness-title">Camila O.</h4>
@@ -553,10 +555,12 @@
                             pero cálido. Se nota el amor en cada detalle de la casa."</p>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-sunset/20 blob-2 overflow-hidden shrink-0">
-                                <img src="images/calma-piscina.jpg"
-                                    srcset="images/calma-piscina_small.jpg 600w, images/calma-piscina_medium.jpg 1200w"
-                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                    loading="lazy">
+                                <img src="images/calma-piscina-480.webp"
+                                     width="480"
+                                     height="320"
+                                     class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                     loading="lazy"
+                                     decoding="async">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg wellness-title">Roberto M.</h4>
@@ -593,10 +597,12 @@
                             renovados. Gracias por compartir este rincón del paraíso."</p>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-ink/20 blob-3 overflow-hidden shrink-0">
-                                <img src="images/calma-jardin.jpg"
-                                    srcset="images/calma-jardin_small.jpg 600w, images/calma-jardin_medium.jpg 1200w"
-                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                    loading="lazy">
+                                <img src="images/calma-jardin-480.webp"
+                                     width="480"
+                                     height="720"
+                                     class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                     loading="lazy"
+                                     decoding="async">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg wellness-title">Isabel & Juan</h4>
@@ -634,10 +640,12 @@
                             igual. La tinaja bajo las estrellas es una experiencia religiosa."</p>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-spirit/20 blob-1 overflow-hidden shrink-0">
-                                <img src="images/calma-tinaja.jpg"
-                                    srcset="images/calma-tinaja_small.jpg 600w, images/calma-tinaja_medium.jpg 1200w"
-                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                    loading="lazy">
+                                <img src="images/calma-tinaja-480.webp"
+                                     width="480"
+                                     height="720"
+                                     class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                     loading="lazy"
+                                     decoding="async">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg wellness-title">Camila O.</h4>
@@ -674,10 +682,12 @@
                             pero cálido. Se nota el amor en cada detalle de la casa."</p>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-sunset/20 blob-2 overflow-hidden shrink-0">
-                                <img src="images/calma-piscina.jpg"
-                                    srcset="images/calma-piscina_small.jpg 600w, images/calma-piscina_medium.jpg 1200w"
-                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                    loading="lazy">
+                                <img src="images/calma-piscina-480.webp"
+                                     width="480"
+                                     height="320"
+                                     class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                     loading="lazy"
+                                     decoding="async">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg wellness-title">Roberto M.</h4>
@@ -714,10 +724,12 @@
                             renovados. Gracias por compartir este rincón del paraíso."</p>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 bg-color-ink/20 blob-3 overflow-hidden shrink-0">
-                                <img src="images/calma-jardin.jpg"
-                                    srcset="images/calma-jardin_small.jpg 600w, images/calma-jardin_medium.jpg 1200w"
-                                    sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                    loading="lazy">
+                                <img src="images/calma-jardin-480.webp"
+                                     width="480"
+                                     height="720"
+                                     class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                     loading="lazy"
+                                     decoding="async">
                             </div>
                             <div>
                                 <h4 class="font-serif font-bold text-lg wellness-title">Isabel & Juan</h4>
@@ -738,32 +750,44 @@
                 Silencio</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[600px]">
                 <div class="col-span-2 row-span-2 overflow-hidden rounded-3xl reveal-on-scroll">
-                    <img src="images/calma-piscina.jpg"
-                        srcset="images/calma-piscina_small.jpg 600w, images/calma-piscina_medium.jpg 1200w"
-                        sizes="(max-width: 768px) 100vw, 25vw"
-                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                        loading="lazy">
+                    <img src="images/calma-piscina-960.webp"
+                         srcset="images/calma-piscina-480.webp 480w, images/calma-piscina-960.webp 960w, images/calma-piscina-1920.webp 1920w"
+                         sizes="(max-width: 767px) 100vw, (max-width: 1280px) 50vw, 620px"
+                         width="960"
+                         height="640"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                         loading="lazy"
+                         decoding="async">
                 </div>
                 <div class="overflow-hidden rounded-3xl reveal-on-scroll" style="transition-delay: 0.1s;">
-                    <img src="images/calma-tinaja.jpg"
-                        srcset="images/calma-tinaja_small.jpg 600w, images/calma-tinaja_medium.jpg 1200w"
-                        sizes="(max-width: 768px) 100vw, 25vw"
-                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                        loading="lazy">
+                    <img src="images/calma-tinaja-960.webp"
+                         srcset="images/calma-tinaja-480.webp 480w, images/calma-tinaja-960.webp 960w, images/calma-tinaja-1920.webp 1920w"
+                         sizes="(max-width: 767px) 50vw, (max-width: 1280px) 25vw, 310px"
+                         width="960"
+                         height="1440"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                         loading="lazy"
+                         decoding="async">
                 </div>
                 <div class="overflow-hidden rounded-3xl reveal-on-scroll" style="transition-delay: 0.2s;">
-                    <img src="images/calma-jardin.jpg"
-                        srcset="images/calma-jardin_small.jpg 600w, images/calma-jardin_medium.jpg 1200w"
-                        sizes="(max-width: 768px) 100vw, 25vw"
-                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                        loading="lazy">
+                    <img src="images/calma-jardin-960.webp"
+                         srcset="images/calma-jardin-480.webp 480w, images/calma-jardin-960.webp 960w, images/calma-jardin-1920.webp 1920w"
+                         sizes="(max-width: 767px) 50vw, (max-width: 1280px) 25vw, 310px"
+                         width="960"
+                         height="1440"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                         loading="lazy"
+                         decoding="async">
                 </div>
                 <div class="col-span-2 overflow-hidden rounded-3xl reveal-on-scroll" style="transition-delay: 0.3s;">
-                    <img src="images/calma-hero.jpg"
-                        srcset="images/calma-hero_small.jpg 600w, images/calma-hero_medium.jpg 1200w"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                        loading="lazy">
+                    <img src="images/calma-hero-960.webp"
+                         srcset="images/calma-hero-480.webp 480w, images/calma-hero-960.webp 960w, images/calma-hero-1920.webp 1920w"
+                         sizes="(max-width: 767px) 100vw, (max-width: 1280px) 50vw, 620px"
+                         width="960"
+                         height="1440"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                         loading="lazy"
+                         decoding="async">
                 </div>
             </div>
         </section>

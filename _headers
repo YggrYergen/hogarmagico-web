@@ -1,0 +1,25 @@
+# Cloudflare Pages. Reglas disjuntas a propósito: si dos reglas coinciden, Pages
+# concatena los valores de un mismo header. Nunca "immutable": las rutas no llevan hash.
+# HTML, /css/* y /js/*: revalidar siempre (ETag) para que una publicación nueva no se mezcle con CSS/JS viejos.
+
+/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Fotos con nombre estable (pueden reemplazarse): 1 día fresco + 7 días sirviendo y revalidando en segundo plano.
+/images/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# QR permanentes de las guías (PNG), mismas condiciones que las fotos.
+/guias/qr-calma.png
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/guias/qr-chascona.png
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+/guias/qr-lamar.png
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# La Function ya responde no-store; Pages no aplica _headers a Functions, esto es solo defensa si cambia el enrutado.
+/api/*
+  Cache-Control: no-store

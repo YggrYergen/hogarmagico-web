@@ -6,33 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hogar Mágico | Refugios de Barro y Madera</title>
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <!-- Tailwind via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'color-sand': '#FDFCF8',
-                        'color-ink': '#264653',
-                        'color-sea': '#2A9D8F',
-                        'color-spirit': '#9B5DE5',
-                        'color-night': '#2E294E',
-                        'color-earth': '#CCAEA3',
-                        'color-adobe': '#CCAEA3',
-                        'color-adobe-light': '#E6D5CC',
-                    },
-                    fontFamily: {
-                        serif: ['Cormorant Garamond', 'serif'],
-                        sans: ['Mulish', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap"></noscript>
+    <link rel="stylesheet" href="css/utilities.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -103,21 +81,35 @@
             class="group relative flex-1 h-1/2 md:h-full bg-color-sea overflow-hidden flex items-center justify-center text-center cursor-pointer transition-all duration-700 md:hover:flex-[1.2]">
             <!-- Image Container -->
             <div class="absolute inset-0 z-0">
-                <img src="images/portal-mar-1.jpg"
-                    srcset="images/portal-mar-1_small.jpg 600w, images/portal-mar-1_medium.jpg 1200w, images/portal-mar-1.jpg 2000w"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    class="portal-bg-left absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100"
-                    alt="Punta de Choros 1">
-                <img src="images/portal-mar-2.jpg"
-                    srcset="images/portal-mar-2_small.jpg 600w, images/portal-mar-2_medium.jpg 1200w, images/portal-mar-2.jpg 2000w"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    class="portal-bg-left absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
-                    alt="Punta de Choros 2">
-                <img src="images/portal-mar-3.jpg"
-                    srcset="images/portal-mar-3_small.jpg 600w, images/portal-mar-3_medium.jpg 1200w, images/portal-mar-3.jpg 2000w"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    class="portal-bg-left absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
-                    alt="Punta de Choros 3">
+                <img src="images/portal-mar-1-960.webp"
+                     srcset="images/portal-mar-1-480.webp 480w, images/portal-mar-1-960.webp 960w, images/portal-mar-1-1920.webp 1920w"
+                     sizes="(max-width: 767px) 100vw, 55vw"
+                     width="960"
+                     height="1440"
+                     class="portal-bg-left absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100"
+                     alt="Punta de Choros 1"
+                     loading="eager"
+                     fetchpriority="high">
+                <img src="images/portal-mar-2-960.webp"
+                     srcset="images/portal-mar-2-480.webp 480w, images/portal-mar-2-960.webp 960w, images/portal-mar-2-1920.webp 1920w"
+                     sizes="(max-width: 767px) 100vw, 55vw"
+                     width="960"
+                     height="1440"
+                     class="portal-bg-left absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
+                     alt="Punta de Choros 2"
+                     loading="lazy"
+                     decoding="async"
+                     fetchpriority="low">
+                <img src="images/portal-mar-3-960.webp"
+                     srcset="images/portal-mar-3-480.webp 480w, images/portal-mar-3-960.webp 960w, images/portal-mar-3-1920.webp 1920w"
+                     sizes="(max-width: 767px) 100vw, 55vw"
+                     width="960"
+                     height="1440"
+                     class="portal-bg-left absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
+                     alt="Punta de Choros 3"
+                     loading="lazy"
+                     decoding="async"
+                     fetchpriority="low">
             </div>
             <!-- Overlay & Content -->
             <div class="absolute inset-0 bg-color-ink/20 group-hover:bg-color-ink/10 transition-colors z-10"></div>
@@ -139,21 +131,35 @@
             class="group relative flex-1 h-1/2 md:h-full bg-color-spirit overflow-hidden flex items-center justify-center text-center cursor-pointer transition-all duration-700 md:hover:flex-[1.2]">
             <!-- Image Container -->
             <div class="absolute inset-0 z-0">
-                <img src="images/portal-valle-1.jpg"
-                    srcset="images/portal-valle-1_small.jpg 600w, images/portal-valle-1_medium.jpg 1200w, images/portal-valle-1.jpg 2000w"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    class="portal-bg-right absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100"
-                    alt="Cochiguaz 1">
-                <img src="images/portal-valle-2.jpg"
-                    srcset="images/portal-valle-2_small.jpg 600w, images/portal-valle-2_medium.jpg 1200w, images/portal-valle-2.jpg 2000w"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    class="portal-bg-right absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
-                    alt="Cochiguaz 2">
-                <img src="images/portal-valle-3.jpg"
-                    srcset="images/portal-valle-3_small.jpg 600w, images/portal-valle-3_medium.jpg 1200w, images/portal-valle-3.jpg 2000w"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    class="portal-bg-right absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
-                    alt="Cochiguaz 3">
+                <img src="images/portal-valle-1-960.webp"
+                     srcset="images/portal-valle-1-480.webp 480w, images/portal-valle-1-960.webp 960w, images/portal-valle-1-1920.webp 1920w"
+                     sizes="(max-width: 767px) 100vw, 55vw"
+                     width="960"
+                     height="640"
+                     class="portal-bg-right absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100"
+                     alt="Cochiguaz 1"
+                     loading="eager"
+                     fetchpriority="high">
+                <img src="images/portal-valle-2-960.webp"
+                     srcset="images/portal-valle-2-480.webp 480w, images/portal-valle-2-960.webp 960w, images/portal-valle-2-1920.webp 1920w"
+                     sizes="(max-width: 767px) 100vw, 55vw"
+                     width="960"
+                     height="1440"
+                     class="portal-bg-right absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
+                     alt="Cochiguaz 2"
+                     loading="lazy"
+                     decoding="async"
+                     fetchpriority="low">
+                <img src="images/portal-valle-3-960.webp"
+                     srcset="images/portal-valle-3-480.webp 480w, images/portal-valle-3-960.webp 960w, images/portal-valle-3-1920.webp 1920w"
+                     sizes="(max-width: 767px) 100vw, 55vw"
+                     width="960"
+                     height="1440"
+                     class="portal-bg-right absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
+                     alt="Cochiguaz 3"
+                     loading="lazy"
+                     decoding="async"
+                     fetchpriority="low">
             </div>
             <!-- Overlay & Content -->
             <div class="absolute inset-0 bg-color-night/20 group-hover:bg-color-night/10 transition-colors z-10"></div>
@@ -217,10 +223,15 @@
                 </div>
                 <div
                     class="blob-1 absolute inset-3 overflow-hidden shadow-2xl group-hover:scale-105 transition-transform duration-700">
-                    <img src="images/chascona-hero.jpg"
-                        srcset="images/chascona-hero_small.jpg 600w, images/chascona-hero_medium.jpg 1200w"
-                        sizes="(max-width: 768px) 100vw, 33vw" alt="La Chascona" class="w-full h-full object-cover"
-                        loading="lazy">
+                    <img src="images/chascona-hero-960.webp"
+                         srcset="images/chascona-hero-480.webp 480w, images/chascona-hero-960.webp 960w, images/chascona-hero-1920.webp 1920w"
+                         sizes="(max-width: 767px) 100vw, (max-width: 1280px) 30vw, 380px"
+                         width="960"
+                         height="640"
+                         alt="La Chascona"
+                         class="w-full h-full object-cover"
+                         loading="lazy"
+                         decoding="async">
                     <div
                         class="absolute inset-0 bg-color-night/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                         <span class="text-white font-serif text-2xl drop-shadow-lg">La Chascona</span>
@@ -235,10 +246,15 @@
                 </div>
                 <div
                     class="blob-2 absolute inset-3 overflow-hidden shadow-2xl group-hover:scale-105 transition-transform duration-700">
-                    <img src="images/portal-mar-1.jpg"
-                        srcset="images/portal-mar-1_small.jpg 600w, images/portal-mar-1_medium.jpg 1200w"
-                        sizes="(max-width: 768px) 100vw, 33vw" alt="La Mar" class="w-full h-full object-cover"
-                        loading="lazy">
+                    <img src="images/portal-mar-1-960.webp"
+                         srcset="images/portal-mar-1-480.webp 480w, images/portal-mar-1-960.webp 960w, images/portal-mar-1-1920.webp 1920w"
+                         sizes="(max-width: 767px) 100vw, (max-width: 1280px) 30vw, 380px"
+                         width="960"
+                         height="1440"
+                         alt="La Mar"
+                         class="w-full h-full object-cover"
+                         loading="lazy"
+                         decoding="async">
                     <div
                         class="absolute inset-0 bg-color-night/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                         <span class="text-white font-serif text-2xl drop-shadow-lg">La Mar</span>
@@ -253,10 +269,15 @@
                 </div>
                 <div
                     class="blob-3 absolute inset-3 overflow-hidden shadow-2xl group-hover:scale-105 transition-transform duration-700">
-                    <img src="images/portal-valle-1.jpg"
-                        srcset="images/portal-valle-1_small.jpg 600w, images/portal-valle-1_medium.jpg 1200w"
-                        sizes="(max-width: 768px) 100vw, 33vw" alt="La Calma" class="w-full h-full object-cover"
-                        loading="lazy">
+                    <img src="images/portal-valle-1-960.webp"
+                         srcset="images/portal-valle-1-480.webp 480w, images/portal-valle-1-960.webp 960w, images/portal-valle-1-1920.webp 1920w"
+                         sizes="(max-width: 767px) 100vw, (max-width: 1280px) 30vw, 380px"
+                         width="960"
+                         height="640"
+                         alt="La Calma"
+                         class="w-full h-full object-cover"
+                         loading="lazy"
+                         decoding="async">
                     <div
                         class="absolute inset-0 bg-color-night/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                         <span class="text-white font-serif text-2xl drop-shadow-lg">La Calma</span>
@@ -286,9 +307,15 @@
                 <div
                     class="md:col-span-2 md:row-span-2 relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500">
                     <div class="w-full h-full rounded-2xl overflow-hidden relative">
-                        <img src="images/home-gallery/_AFD3470.jpg"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            loading="lazy" alt="Hogar Magico Detalle">
+                        <img src="images/home-gallery/_AFD3470-960.webp"
+                             srcset="images/home-gallery/_AFD3470-480.webp 480w, images/home-gallery/_AFD3470-960.webp 960w, images/home-gallery/_AFD3470-1920.webp 1920w"
+                             sizes="(max-width: 767px) 100vw, (max-width: 1280px) 66vw, 820px"
+                             width="960"
+                             height="640"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                             alt="Hogar Magico Detalle"
+                             loading="lazy"
+                             decoding="async">
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         </div>
@@ -299,9 +326,15 @@
                 <div class="relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500"
                     style="transition-delay: 0.1s;">
                     <div class="w-full h-full rounded-2xl overflow-hidden relative">
-                        <img src="images/home-gallery/_AFD3437.jpg"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            loading="lazy" alt="Hogar Magico Detalle">
+                        <img src="images/home-gallery/_AFD3437-960.webp"
+                             srcset="images/home-gallery/_AFD3437-480.webp 480w, images/home-gallery/_AFD3437-960.webp 960w, images/home-gallery/_AFD3437-1920.webp 1920w"
+                             sizes="(max-width: 767px) 100vw, (max-width: 1280px) 33vw, 400px"
+                             width="960"
+                             height="1440"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                             alt="Hogar Magico Detalle"
+                             loading="lazy"
+                             decoding="async">
                     </div>
                 </div>
 
@@ -309,9 +342,15 @@
                 <div class="relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500"
                     style="transition-delay: 0.2s;">
                     <div class="w-full h-full rounded-2xl overflow-hidden relative">
-                        <img src="images/home-gallery/_AFD3545.jpg"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            loading="lazy" alt="Hogar Magico Detalle">
+                        <img src="images/home-gallery/_AFD3545-960.webp"
+                             srcset="images/home-gallery/_AFD3545-480.webp 480w, images/home-gallery/_AFD3545-960.webp 960w, images/home-gallery/_AFD3545-1920.webp 1920w"
+                             sizes="(max-width: 767px) 100vw, (max-width: 1280px) 33vw, 400px"
+                             width="960"
+                             height="1440"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                             alt="Hogar Magico Detalle"
+                             loading="lazy"
+                             decoding="async">
                     </div>
                 </div>
 
@@ -319,9 +358,15 @@
                 <div class="md:col-span-2 relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500"
                     style="transition-delay: 0.3s;">
                     <div class="w-full h-full rounded-2xl overflow-hidden relative">
-                        <img src="images/home-gallery/_AFD3623.jpg"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            loading="lazy" alt="Hogar Magico Detalle">
+                        <img src="images/home-gallery/_AFD3623-960.webp"
+                             srcset="images/home-gallery/_AFD3623-480.webp 480w, images/home-gallery/_AFD3623-960.webp 960w, images/home-gallery/_AFD3623-1920.webp 1920w"
+                             sizes="(max-width: 767px) 100vw, (max-width: 1280px) 66vw, 820px"
+                             width="960"
+                             height="1440"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                             alt="Hogar Magico Detalle"
+                             loading="lazy"
+                             decoding="async">
                     </div>
                 </div>
 
@@ -329,9 +374,15 @@
                 <div class="relative group reveal-on-scroll rounded-3xl overflow-hidden glass-nav border border-white/40 p-2 transform hover:-translate-y-1 transition-transform duration-500"
                     style="transition-delay: 0.4s;">
                     <div class="w-full h-full rounded-2xl overflow-hidden relative">
-                        <img src="images/home-gallery/_AFD8265.jpg"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            loading="lazy" alt="Hogar Magico Detalle">
+                        <img src="images/home-gallery/_AFD8265-960.webp"
+                             srcset="images/home-gallery/_AFD8265-480.webp 480w, images/home-gallery/_AFD8265-960.webp 960w, images/home-gallery/_AFD8265-1920.webp 1920w"
+                             sizes="(max-width: 767px) 100vw, (max-width: 1280px) 33vw, 400px"
+                             width="960"
+                             height="1440"
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                             alt="Hogar Magico Detalle"
+                             loading="lazy"
+                             decoding="async">
                     </div>
                 </div>
             </div>
