@@ -7,6 +7,7 @@
         calma: { name: 'La Calma', place: 'Cochiguaz · Bajo el cielo del Elqui', image: 'calma-hero.jpg', maximum: 8, slug: 'book-cochiguaz' }
     };
     const house = config[root.dataset.house];
+    const photoStem = house.image.replace(/\.[^.]+$/, '');
     const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Santiago', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
     const parse = value => new Date(`${value}T12:00:00Z`);
     const iso = date => date.toISOString().slice(0, 10);
@@ -18,6 +19,8 @@
     let days = {};
     let calendarReady = false;
     let calendarController;
+    let calendarStarted = false;
+    let pendingCalendarKey = '';
     let quoteController;
     let quoteVersion = 0;
     let currentQuote;
@@ -29,7 +32,7 @@
         <div class="hm-months" aria-label="Calendario de disponibilidad"></div>
         <div class="hm-legend"><span>Tachado · Sin disponibilidad</span><button class="hm-clear" data-action="clear">Borrar fechas</button></div>
         <p class="hm-calendar-status" role="status" data-calendar-status></p><button class="hm-retry" data-action="retry" hidden>Volver a consultar</button>
-        </div><aside class="hm-summary" aria-label="Resumen de tu estadía"><img class="hm-stay-photo" src="images/${house.image}" alt="${house.name}" loading="lazy"><div class="hm-summary-body">
+        </div><aside class="hm-summary" aria-label="Resumen de tu estadía"><img class="hm-stay-photo" src="images/${photoStem}-480.webp" srcset="images/${photoStem}-480.webp 480w, images/${photoStem}-960.webp 960w" sizes="(max-width: 1100px) 270px, 300px" width="300" height="140" alt="${house.name}" loading="lazy" decoding="async"><div class="hm-summary-body">
         <h3 class="hm-house-name">${house.name}</h3><p class="hm-place">${house.place}</p>
         <div class="hm-guests"><span>Personas</span><div class="hm-counter"><button class="hm-step" data-action="less" aria-label="Quitar una persona">−</button><output aria-label="Cantidad de personas">2</output><button class="hm-step" data-action="more" aria-label="Agregar una persona">+</button></div></div>
         <div class="hm-quote" aria-live="polite"><p class="hm-quote-label" data-quote-label>Tu estadía</p><p class="hm-total" data-total>Sin prisa.</p><p class="hm-quote-status" data-quote-status>Selecciona llegada y salida para consultar el precio actualizado.</p></div>
@@ -46,6 +49,12 @@
     const fallback = find('.hm-fallback');
     const calendarStatus = find('[data-calendar-status]');
     const retry = find('[data-action="retry"]');
+    // Si los WebP aún no están publicados, vuelve una sola vez a la foto original.
+    find('.hm-stay-photo').addEventListener('error', event => {
+        event.target.removeAttribute('srcset');
+        event.target.removeAttribute('sizes');
+        event.target.src = `images/${house.image}`;
+    }, { once: true });
 
     function showDirectBooking() {
         const url = new URL(`https://beds24.com/${house.slug}`);
@@ -109,7 +118,12 @@
         find('.hm-months').innerHTML = months.join('');
     }
 
-    async function loadCalendar() {
+    async function loadCalendar(force = false) {
+        const key = `${iso(month).slice(0, 7)}|${guests}`;
+        // Misma consulta ya en vuelo (p. ej. IntersectionObserver + cambio manual de fecha): no se duplica.
+        if (!force && key === pendingCalendarKey) return;
+        calendarStarted = true;
+        pendingCalendarKey = key;
         calendarController?.abort();
         const controller = new AbortController();
         calendarController = controller;
@@ -121,12 +135,14 @@
         try {
             const data = await lookup({ kind: 'calendar', month: iso(month).slice(0, 7) }, controller.signal);
             if (controller.signal.aborted) return;
+            pendingCalendarKey = '';
             days = data.days;
             calendarReady = true;
             calendarStatus.textContent = 'Disponibilidad consultada. Las condiciones se verifican al elegir tus días.';
             renderCalendar();
         } catch (error) {
             if (controller.signal.aborted) return;
+            pendingCalendarKey = '';
             calendarStatus.textContent = 'No pudimos cargar el calendario. Puedes ingresar las fechas arriba.';
             retry.hidden = false;
             showDirectBooking();
@@ -201,7 +217,7 @@
             month = new Date(Date.UTC(month.getUTCFullYear(), month.getUTCMonth() + (action === 'next' ? 1 : -1), 1, 12));
             void loadCalendar();
         }
-        if (action === 'retry') void loadCalendar();
+        if (action === 'retry') void loadCalendar(true);
         if (action === 'clear') { checkin = ''; checkout = ''; syncDates(); }
         if (action === 'less' || action === 'more') {
             guests = Math.max(1, Math.min(house.maximum, guests + (action === 'more' ? 1 : -1)));
@@ -235,5 +251,25 @@
             }
         }
     });
-    void loadCalendar();
+
+    // La primera consulta de disponibilidad espera a que la sección esté cerca. Cualquier otro camino
+    // (ancla, interacción, cambio de fechas/personas, reintento) pasa por loadCalendar, que marca
+    // calendarStarted y evita una segunda solicitud inicial.
+    renderCalendar();
+    let calendarObserver;
+    function startCalendar() {
+        calendarObserver?.disconnect();
+        window.removeEventListener('hashchange', onHash);
+        if (!calendarStarted) void loadCalendar();
+    }
+    function onHash() { if (location.hash === `#${root.id}`) startCalendar(); }
+    if (!('IntersectionObserver' in window) || (root.id && location.hash === `#${root.id}`)) {
+        startCalendar();
+    } else {
+        calendarObserver = new IntersectionObserver(entries => { if (entries.some(entry => entry.isIntersecting)) startCalendar(); }, { rootMargin: '800px 0px' });
+        calendarObserver.observe(root);
+        window.addEventListener('hashchange', onHash);
+        root.addEventListener('focusin', startCalendar, { once: true });
+        root.addEventListener('pointerdown', startCalendar, { once: true });
+    }
 })();

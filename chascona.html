@@ -6,33 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casa La Chascona | Hogar Mágico</title>
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <!-- Tailwind via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'color-sand': '#FDFCF8',
-                        'color-ink': '#264653',
-                        'color-sea': '#2A9D8F',
-                        'color-spirit': '#9B5DE5',
-                        'color-night': '#2E294E',
-                        'color-earth': '#CCAEA3',
-                        'color-adobe': '#CCAEA3',
-                        'color-adobe-light': '#E6D5CC',
-                    },
-                    fontFamily: {
-                        serif: ['Cormorant Garamond', 'serif'],
-                        sans: ['Mulish', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap"></noscript>
+    <link rel="stylesheet" href="css/utilities.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/booking.css">
     <script src="js/booking.js" defer></script>
@@ -100,11 +78,16 @@
         <!-- Hero Section -->
         <header
             class="relative w-full h-[80vh] flex items-center justify-center text-center px-6 overflow-hidden bg-gradient-to-br from-color-ink to-color-sea">
-            <img src="images/chascona-hero.jpg" id="hero-img"
-                srcset="images/chascona-hero_small.jpg 600w, images/chascona-hero_medium.jpg 1200w, images/chascona-hero.jpg 2000w"
-                sizes="100vw"
-                class="absolute inset-x-0 -top-20 -bottom-20 w-full h-[120%] object-cover mix-blend-multiply opacity-60 transition-all duration-[2000ms]"
-                data-speed="0.2">
+            <img src="images/chascona-hero-960.webp"
+                 srcset="images/chascona-hero-480.webp 480w, images/chascona-hero-960.webp 960w, images/chascona-hero-1920.webp 1920w"
+                 sizes="100vw"
+                 width="960"
+                 height="640"
+                 id="hero-img"
+                 class="absolute inset-x-0 -top-20 -bottom-20 w-full h-[120%] object-cover mix-blend-multiply opacity-60 transition-all duration-[2000ms]"
+                 data-speed="0.2"
+                 loading="eager"
+                 fetchpriority="high">
 
             <div class="relative z-10 text-white max-w-4xl">
                 <h1 class="text-6xl md:text-8xl font-serif mb-4 drop-shadow-lg reveal-on-scroll">Casa La Chascona</h1>
@@ -148,18 +131,30 @@
                     class="absolute inset-0 bg-color-earth/10 -rotate-3 rounded-3xl group-hover:rotate-0 transition-transform duration-700">
                 </div>
                 <div class="relative overflow-hidden rounded-3xl shadow-xl h-[450px]">
-                    <img src="images/chascona-adobe.jpg"
-                        srcset="images/chascona-adobe_small.jpg 600w, images/chascona-adobe_medium.jpg 1200w"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        class="adobe-texture-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100">
-                    <img src="images/chascona-escalera.jpg"
-                        srcset="images/chascona-escalera_small.jpg 600w, images/chascona-escalera_medium.jpg 1200w"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        class="adobe-texture-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
-                    <img src="images/chascona-detalle.jpg"
-                        srcset="images/chascona-detalle_small.jpg 600w, images/chascona-detalle_medium.jpg 1200w"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        class="adobe-texture-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+                    <img src="images/chascona-adobe-960.webp"
+                         srcset="images/chascona-adobe-480.webp 480w, images/chascona-adobe-960.webp 960w, images/chascona-adobe-1920.webp 1920w"
+                         sizes="(max-width: 767px) 100vw, (max-width: 1280px) 45vw, 560px"
+                         width="960"
+                         height="640"
+                         class="adobe-texture-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100"
+                         loading="lazy"
+                         decoding="async">
+                    <img src="images/chascona-escalera-960.webp"
+                         srcset="images/chascona-escalera-480.webp 480w, images/chascona-escalera-960.webp 960w, images/chascona-escalera-1920.webp 1920w"
+                         sizes="(max-width: 767px) 100vw, (max-width: 1280px) 45vw, 560px"
+                         width="960"
+                         height="1440"
+                         class="adobe-texture-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
+                         loading="lazy"
+                         decoding="async">
+                    <img src="images/chascona-detalle-960.webp"
+                         srcset="images/chascona-detalle-480.webp 480w, images/chascona-detalle-960.webp 960w, images/chascona-detalle-1920.webp 1920w"
+                         sizes="(max-width: 767px) 100vw, (max-width: 1280px) 45vw, 560px"
+                         width="960"
+                         height="1440"
+                         class="adobe-texture-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0"
+                         loading="lazy"
+                         decoding="async">
                 </div>
             </div>
         </section>
@@ -210,20 +205,44 @@
             <h2 class="text-4xl font-serif mb-12 text-center">Inspiración en cada rincón</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[600px]">
                 <div class="col-span-2 row-span-2 overflow-hidden rounded-3xl reveal-on-scroll">
-                    <img src="images/chascona-cocina.jpg"
-                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                    <img src="images/chascona-cocina-960.webp"
+                         srcset="images/chascona-cocina-480.webp 480w, images/chascona-cocina-960.webp 960w, images/chascona-cocina-1920.webp 1920w"
+                         sizes="(max-width: 767px) 100vw, (max-width: 1280px) 50vw, 620px"
+                         width="960"
+                         height="640"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                         loading="lazy"
+                         decoding="async">
                 </div>
                 <div class="overflow-hidden rounded-3xl reveal-on-scroll" style="transition-delay: 0.1s;">
-                    <img src="images/chascona-detalle.jpg"
-                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                    <img src="images/chascona-detalle-960.webp"
+                         srcset="images/chascona-detalle-480.webp 480w, images/chascona-detalle-960.webp 960w, images/chascona-detalle-1920.webp 1920w"
+                         sizes="(max-width: 767px) 50vw, (max-width: 1280px) 25vw, 310px"
+                         width="960"
+                         height="1440"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                         loading="lazy"
+                         decoding="async">
                 </div>
                 <div class="overflow-hidden rounded-3xl reveal-on-scroll" style="transition-delay: 0.2s;">
-                    <img src="images/chascona-escalera.jpg"
-                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                    <img src="images/chascona-escalera-960.webp"
+                         srcset="images/chascona-escalera-480.webp 480w, images/chascona-escalera-960.webp 960w, images/chascona-escalera-1920.webp 1920w"
+                         sizes="(max-width: 767px) 50vw, (max-width: 1280px) 25vw, 310px"
+                         width="960"
+                         height="1440"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                         loading="lazy"
+                         decoding="async">
                 </div>
                 <div class="col-span-2 overflow-hidden rounded-3xl reveal-on-scroll" style="transition-delay: 0.3s;">
-                    <img src="images/chascona-adobe.jpg"
-                        class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                    <img src="images/chascona-adobe-960.webp"
+                         srcset="images/chascona-adobe-480.webp 480w, images/chascona-adobe-960.webp 960w, images/chascona-adobe-1920.webp 1920w"
+                         sizes="(max-width: 767px) 100vw, (max-width: 1280px) 50vw, 620px"
+                         width="960"
+                         height="640"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                         loading="lazy"
+                         decoding="async">
                 </div>
             </div>
             </div>
@@ -363,10 +382,12 @@
                         arquitectura de barro te conecta con la tierra de una forma inexplicable."</p>
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-color-sea/20 blob-1 overflow-hidden shrink-0">
-                            <img src="images/chascona-detalle.jpg"
-                                srcset="images/chascona-detalle_small.jpg 600w, images/chascona-detalle_medium.jpg 1200w"
-                                sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                loading="lazy">
+                            <img src="images/chascona-detalle-480.webp"
+                                 width="480"
+                                 height="720"
+                                 class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
                         <div>
                             <h4 class="font-serif font-bold text-lg">María José L.</h4>
@@ -382,10 +403,12 @@
                         tantas estrellas. La casa es acogedora y tiene todo lo necesario."</p>
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-color-earth/20 blob-2 overflow-hidden shrink-0">
-                            <img src="images/chascona-escalera.jpg"
-                                srcset="images/chascona-escalera_small.jpg 600w, images/chascona-escalera_medium.jpg 1200w"
-                                sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                loading="lazy">
+                            <img src="images/chascona-escalera-480.webp"
+                                 width="480"
+                                 height="720"
+                                 class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
                         <div>
                             <h4 class="font-serif font-bold text-lg">Carlos R.</h4>
@@ -401,10 +424,12 @@
                         Definitivamente volveremos el próximo verano."</p>
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-color-ink/20 blob-3 overflow-hidden shrink-0">
-                            <img src="images/chascona-cocina.jpg"
-                                srcset="images/chascona-cocina_small.jpg 600w, images/chascona-cocina_medium.jpg 1200w"
-                                sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                loading="lazy">
+                            <img src="images/chascona-cocina-480.webp"
+                                 width="480"
+                                 height="320"
+                                 class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
                         <div>
                             <h4 class="font-serif font-bold text-lg">Fernanda M.</h4>
@@ -421,10 +446,12 @@
                         arquitectura de barro te conecta con la tierra de una forma inexplicable."</p>
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-color-sea/20 blob-1 overflow-hidden shrink-0">
-                            <img src="images/chascona-detalle.jpg"
-                                srcset="images/chascona-detalle_small.jpg 600w, images/chascona-detalle_medium.jpg 1200w"
-                                sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                loading="lazy">
+                            <img src="images/chascona-detalle-480.webp"
+                                 width="480"
+                                 height="720"
+                                 class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
                         <div>
                             <h4 class="font-serif font-bold text-lg">María José L.</h4>
@@ -440,10 +467,12 @@
                         tantas estrellas. La casa es acogedora y tiene todo lo necesario."</p>
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-color-earth/20 blob-2 overflow-hidden shrink-0">
-                            <img src="images/chascona-escalera.jpg"
-                                srcset="images/chascona-escalera_small.jpg 600w, images/chascona-escalera_medium.jpg 1200w"
-                                sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                loading="lazy">
+                            <img src="images/chascona-escalera-480.webp"
+                                 width="480"
+                                 height="720"
+                                 class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
                         <div>
                             <h4 class="font-serif font-bold text-lg">Carlos R.</h4>
@@ -459,10 +488,12 @@
                         Definitivamente volveremos el próximo verano."</p>
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-color-ink/20 blob-3 overflow-hidden shrink-0">
-                            <img src="images/chascona-cocina.jpg"
-                                srcset="images/chascona-cocina_small.jpg 600w, images/chascona-cocina_medium.jpg 1200w"
-                                sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                loading="lazy">
+                            <img src="images/chascona-cocina-480.webp"
+                                 width="480"
+                                 height="320"
+                                 class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
                         <div>
                             <h4 class="font-serif font-bold text-lg">Fernanda M.</h4>
@@ -479,10 +510,12 @@
                         arquitectura de barro te conecta con la tierra de una forma inexplicable."</p>
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-color-sea/20 blob-1 overflow-hidden shrink-0">
-                            <img src="images/chascona-detalle.jpg"
-                                srcset="images/chascona-detalle_small.jpg 600w, images/chascona-detalle_medium.jpg 1200w"
-                                sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                loading="lazy">
+                            <img src="images/chascona-detalle-480.webp"
+                                 width="480"
+                                 height="720"
+                                 class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
                         <div>
                             <h4 class="font-serif font-bold text-lg">María José L.</h4>
@@ -498,10 +531,12 @@
                         tantas estrellas. La casa es acogedora y tiene todo lo necesario."</p>
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-color-earth/20 blob-2 overflow-hidden shrink-0">
-                            <img src="images/chascona-escalera.jpg"
-                                srcset="images/chascona-escalera_small.jpg 600w, images/chascona-escalera_medium.jpg 1200w"
-                                sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                loading="lazy">
+                            <img src="images/chascona-escalera-480.webp"
+                                 width="480"
+                                 height="720"
+                                 class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
                         <div>
                             <h4 class="font-serif font-bold text-lg">Carlos R.</h4>
@@ -517,10 +552,12 @@
                         Definitivamente volveremos el próximo verano."</p>
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 bg-color-ink/20 blob-3 overflow-hidden shrink-0">
-                            <img src="images/chascona-cocina.jpg"
-                                srcset="images/chascona-cocina_small.jpg 600w, images/chascona-cocina_medium.jpg 1200w"
-                                sizes="50px" class="w-full h-full object-cover opacity-80 mix-blend-multiply"
-                                loading="lazy">
+                            <img src="images/chascona-cocina-480.webp"
+                                 width="480"
+                                 height="320"
+                                 class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
                         <div>
                             <h4 class="font-serif font-bold text-lg">Fernanda M.</h4>

@@ -4,6 +4,10 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/dev.mjs",
+    "build:css": "tailwindcss -c ./tailwind.config.cjs -i ./scripts/utilities.css -o ./css/utilities.css --minify",
     "test": "node --test tests/booking.test.mjs"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
   }
 }

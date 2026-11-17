@@ -6,33 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto | Hogar Mágico</title>
     <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap"
-        rel="stylesheet">
-    <!-- Tailwind via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'color-sand': '#FDFCF8',
-                        'color-ink': '#264653',
-                        'color-sea': '#2A9D8F',
-                        'color-spirit': '#9B5DE5',
-                        'color-night': '#2E294E',
-                        'color-earth': '#CCAEA3',
-                        'color-adobe': '#CCAEA3',
-                        'color-adobe-light': '#E6D5CC',
-                    },
-                    fontFamily: {
-                        serif: ['Cormorant Garamond', 'serif'],
-                        sans: ['Mulish', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Mulish:wght@300;400;600&display=swap"></noscript>
+    <link rel="stylesheet" href="css/utilities.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -132,10 +110,24 @@
             <div class="relative h-[600px] reveal-on-scroll" style="transition-delay: 0.3s;">
                 <div class="blob-2 absolute inset-0 bg-color-earth/10 animate-pulse"></div>
                 <div class="blob-2 absolute inset-8 overflow-hidden shadow-2xl">
-                    <img src="images/adobe-texture-1.jpg" alt="Eco Textures"
-                        class="w-full h-full object-cover adobe-texture-img transition-opacity duration-1000 opacity-100">
-                    <img src="images/adobe-texture-2.jpg" alt="Eco Textures"
-                        class="w-full h-full object-cover adobe-texture-img absolute inset-0 transition-opacity duration-1000 opacity-0">
+                    <img src="images/adobe-texture-1-960.webp"
+                         srcset="images/adobe-texture-1-480.webp 480w, images/adobe-texture-1-960.webp 960w, images/adobe-texture-1-1920.webp 1920w"
+                         sizes="(max-width: 767px) 100vw, (max-width: 1280px) 40vw, 470px"
+                         width="960"
+                         height="640"
+                         alt="Eco Textures"
+                         class="w-full h-full object-cover adobe-texture-img transition-opacity duration-1000 opacity-100"
+                         loading="eager"
+                         decoding="async">
+                    <img src="images/adobe-texture-2-960.webp"
+                         srcset="images/adobe-texture-2-480.webp 480w, images/adobe-texture-2-960.webp 960w, images/adobe-texture-2-1920.webp 1920w"
+                         sizes="(max-width: 767px) 100vw, (max-width: 1280px) 40vw, 470px"
+                         width="960"
+                         height="1440"
+                         alt="Eco Textures"
+                         class="w-full h-full object-cover adobe-texture-img absolute inset-0 transition-opacity duration-1000 opacity-0"
+                         loading="lazy"
+                         decoding="async">
                 </div>
                 <!-- Floating geometric elements -->
                 <div class="absolute -top-10 -right-10 w-40 h-40 bg-color-sea/10 blob-1 animate-pulse"

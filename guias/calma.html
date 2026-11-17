@@ -6,7 +6,9 @@
         <meta name="robots" content="noindex, nofollow">
         <title>Tu estadía en La Calma | Hogar Mágico</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Mulish:wght@400;600&display=swap">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Mulish:wght@400;600&display=swap" media="print" onload="this.media='all'">
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Mulish:wght@400;600&display=swap"></noscript>
         <link rel="stylesheet" href="../css/guides.css">
     </head>
     <body>
@@ -15,7 +17,14 @@
             <a href="../calma.html">Conoce la casa</a>
         </nav>
         <header class="guide-hero">
-            <img src="../images/calma-hero.jpg" alt="Casa La Calma">
+            <img src="../images/calma-hero-960.webp"
+                 srcset="../images/calma-hero-480.webp 480w, ../images/calma-hero-960.webp 960w, ../images/calma-hero-1920.webp 1920w"
+                 sizes="(max-width: 950px) 100vw, 950px"
+                 width="960"
+                 height="1440"
+                 alt="Casa La Calma"
+                 loading="eager"
+                 fetchpriority="high">
             <div class="guide-title">
                 <p>Cochiguaz · Valle de Elqui · Guía de tu estadía</p>
                 <h1>Bienvenido a La Calma.</h1>

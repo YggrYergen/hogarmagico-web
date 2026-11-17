@@ -1,9 +1,11 @@
+const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Initialize Animation Observer
     initScrollObserver();
 
     // 2. Initialize Parallax Effects
-    window.addEventListener('scroll', handleParallax);
+    initParallax();
 
     // 3. Start Index Portals Rotation
     startImageRotation('.portal-bg-left', 5000);
@@ -19,8 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
 /**
  * Observer for "Entrance" animations.
  * Triggers .appear class on .reveal-on-scroll elements.
+ * With prefers-reduced-motion the elements are shown at once, without the slide/fade.
  */
 function initScrollObserver() {
+    const elementsToReveal = document.querySelectorAll('.reveal-on-scroll');
+    if (!elementsToReveal.length) return;
+
+    if (reducedMotionQuery.matches || !('IntersectionObserver' in window)) {
+        elementsToReveal.forEach(el => {
+            if (reducedMotionQuery.matches) el.style.transition = 'none';
+            el.classList.add('appear');
+        });
+        // Restore the element's own transitions (hover etc.) once the final state has been painted.
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            elementsToReveal.forEach(el => { el.style.transition = ''; });
+        }));
+        return;
+    }
+
     const observerOptions = {
         threshold: 0.15,
         rootMargin: "0px"
@@ -35,20 +53,25 @@ function initScrollObserver() {
         });
     }, observerOptions);
 
-    const elementsToReveal = document.querySelectorAll('.reveal-on-scroll');
     elementsToReveal.forEach(el => observer.observe(el));
 }
 
 /**
  * Generic Image Rotation Function
  * Fades between images with the same selector.
+ * The timer only runs while the tab is visible, the images' container is on screen and the
+ * user has not asked for reduced motion; otherwise nothing is scheduled.
  */
 function startImageRotation(selector, interval) {
     const images = document.querySelectorAll(selector);
     if (images.length <= 1) return;
 
     let currentIndex = 0;
-    setInterval(() => {
+    let timer = null;
+    const visibleContainers = new Set();
+    const hasObserver = 'IntersectionObserver' in window;
+
+    const step = () => {
         images[currentIndex].classList.remove('opacity-100');
         images[currentIndex].classList.add('opacity-0', 'pointer-events-none');
 
@@ -56,21 +79,58 @@ function startImageRotation(selector, interval) {
 
         images[currentIndex].classList.remove('opacity-0', 'pointer-events-none');
         images[currentIndex].classList.add('opacity-100');
-    }, interval);
+    };
+
+    const sync = () => {
+        const shouldRun = !document.hidden && !reducedMotionQuery.matches && (!hasObserver || visibleContainers.size > 0);
+        if (shouldRun && timer === null) timer = setInterval(step, interval);
+        else if (!shouldRun && timer !== null) { clearInterval(timer); timer = null; }
+    };
+
+    document.addEventListener('visibilitychange', sync);
+    reducedMotionQuery.addEventListener?.('change', sync);
+
+    if (hasObserver) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) visibleContainers.add(entry.target);
+                else visibleContainers.delete(entry.target);
+            });
+            sync();
+        });
+        new Set(Array.from(images, img => img.parentElement)).forEach(container => observer.observe(container));
+    } else {
+        sync();
+    }
 }
 
 /**
- * Handle Parallax Effects
+ * Parallax Effects
+ * Elements are looked up once; the scroll listener is only attached if there is something to move,
+ * is passive, and writes at most once per frame. Skipped entirely under prefers-reduced-motion.
  */
-function handleParallax() {
-    const parallaxElements = document.querySelectorAll('.parallax-item');
-    const scrollY = window.scrollY;
+function initParallax() {
+    const parallaxElements = Array.from(document.querySelectorAll('.parallax-item'));
+    if (!parallaxElements.length) return;
 
-    parallaxElements.forEach(el => {
-        const speed = el.dataset.speed || 0.5;
-        // Optimization: only transform if element is somewhat in view
-        el.style.transform = `translateY(${scrollY * speed}px)`;
-    });
+    let frame = 0;
+    const update = () => {
+        frame = 0;
+        if (reducedMotionQuery.matches) {
+            parallaxElements.forEach(el => { el.style.transform = ''; });
+            return;
+        }
+        const scrollY = window.scrollY;
+        parallaxElements.forEach(el => {
+            const speed = el.dataset.speed || 0.5;
+            el.style.transform = `translateY(${scrollY * speed}px)`;
+        });
+    };
+
+    window.addEventListener('scroll', () => {
+        if (reducedMotionQuery.matches && !parallaxElements[0].style.transform) return;
+        if (!frame) frame = requestAnimationFrame(update);
+    }, { passive: true });
 }
 
 // Global Navigation Toggle
@@ -108,19 +168,26 @@ function initDropdowns() {
     });
 
     // Click outside to close
-    document.addEventListener('click', () => {
-        dropdowns.forEach(d => d.classList.remove('is-active'));
-    });
+    if (dropdowns.length) {
+        document.addEventListener('click', () => {
+            dropdowns.forEach(d => d.classList.remove('is-active'));
+        });
+    }
 }
 
 /**
  * Shooting Star Generator for Calma Night Mode
+ * Creates nothing while the tab is hidden, the container is off screen or reduced motion is on.
  * @param {string} containerId - ID of the container
  * @param {boolean} [progressive=false] - Whether to use top-heavy distribution
  */
 window.createShootingStar = function (containerId, progressive = false) {
+    if (document.hidden || reducedMotionQuery.matches) return;
     const container = document.getElementById(containerId);
     if (!container) return;
+
+    const bounds = container.getBoundingClientRect();
+    if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
 
     const star = document.createElement('div');
     star.className = 'shooting-star absolute h-px bg-gradient-to-r from-white to-transparent opacity-0 pointer-events-none';
